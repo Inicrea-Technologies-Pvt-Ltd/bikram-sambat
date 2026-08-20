@@ -1,16 +1,30 @@
 {
   "name": "@inicrea/bikram-sambat-core",
   "version": "0.1.0",
-  "description": "Bikram Sambat (Nepali calendar) date conversion for JavaScript — pure TypeScript, zero dependencies, works in Node, browsers and React Native.",
+  "description": "Bikram Sambat (Nepali calendar) date conversion for JavaScript \u2014 pure TypeScript, zero dependencies, works in Node, browsers and React Native.",
   "keywords": [
-    "bikram-sambat", "nepali-date", "nepali-calendar", "bs-to-ad", "ad-to-bs",
-    "nepal", "date-converter", "bikram", "nepali", "calendar"
+    "bikram-sambat",
+    "nepali-date",
+    "nepali-calendar",
+    "bs-to-ad",
+    "ad-to-bs",
+    "nepal",
+    "date-converter",
+    "bikram",
+    "nepali",
+    "calendar"
   ],
   "license": "MIT",
   "author": "Inicrea Technologies",
-  "repository": { "type": "git", "url": "git+https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat.git", "directory": "packages/core" },
-  "homepage": "https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat#readme",
-  "bugs": { "url": "https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat/issues" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://bikram-sambat.inicreatechnologies.com",
+  "bugs": {
+    "url": "https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat/issues"
+  },
   "type": "module",
   "sideEffects": false,
   "main": "./dist/index.cjs",
@@ -24,9 +38,18 @@
     },
     "./package.json": "./package.json"
   },
-  "files": ["dist", "README.md", "LICENSE", "NOTICE"],
-  "publishConfig": { "access": "public" },
-  "engines": { "node": ">=18" },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "build": "tsup",
     "test": "vitest run",

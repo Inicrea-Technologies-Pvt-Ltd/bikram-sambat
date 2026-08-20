@@ -13,6 +13,9 @@ a Rust calendar engine.
 Sizes are gzipped ESM builds; the UI packages exclude `core`, which they depend
 on, and exclude `react`/`react-native` themselves.
 
+**Live demo and docs: [bikram-sambat.inicreatechnologies.com](https://bikram-sambat.inicreatechnologies.com)** — a working
+BS ⇄ AD converter and patro calendar, running the real package in your browser.
+
 ```bash
 npm install @inicrea/bikram-sambat-react
 ```

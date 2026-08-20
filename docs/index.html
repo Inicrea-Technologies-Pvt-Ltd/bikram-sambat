@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bikram Sambat for JavaScript</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +17,9 @@
   --sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --deva: "Noto Sans Devanagari", var(--sans);
+
+  --measure: 66ch;
+  --sidebar: 15rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -42,6 +46,9 @@
 
 * { box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
 body {
   margin: 0;
   background: var(--paper);
@@ -52,40 +59,60 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.page { width: min(100% - 2.5rem, 46rem); margin-inline: auto; }
-
 a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 2px; }
 a:hover { text-decoration-color: var(--bs); }
-
 code { font-family: var(--mono); font-size: .875em; }
 
-/* ------------------------------------------------------------------ header */
+/* ------------------------------------------------------------------- shell */
 
-.topbar {
-  display: flex; align-items: baseline; justify-content: space-between;
-  gap: 1rem; flex-wrap: wrap;
-  padding: 1.5rem 0 1.25rem;
-  border-bottom: 1px solid var(--rule);
-  font-size: .8125rem;
+.shell { display: grid; grid-template-columns: var(--sidebar) minmax(0, 1fr); }
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.75rem 1.25rem;
+  border-right: 1px solid var(--rule);
+  background: var(--panel);
+  overflow-y: auto;
 }
 
-.mark { font-weight: 600; letter-spacing: -0.005em; }
-.mark .deva { font-family: var(--deva); color: var(--muted); font-weight: 400; margin-left: .4rem; }
-.topbar .meta { color: var(--muted); font-family: var(--mono); font-size: .75rem; }
+.brand { font-weight: 600; line-height: 1.3; }
+.brand .deva { display: block; font-family: var(--deva); font-weight: 400; color: var(--muted); font-size: .8125rem; }
 
-/* ------------------------------------------------------------------- intro */
+.nav { display: flex; flex-direction: column; gap: .125rem; }
+.nav a {
+  padding: .3rem .5rem;
+  margin-inline: -.5rem;
+  border-radius: 4px;
+  font-size: .8125rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+.nav a:hover { color: var(--ink); background: var(--paper); }
 
-.intro { padding: 2.5rem 0 0; }
+.side-meta { margin-top: auto; font-size: .75rem; color: var(--muted); display: flex; flex-direction: column; gap: .5rem; }
+.side-meta a { color: var(--muted); }
+
+/* -------------------------------------------------------------------- main */
+
+.main { min-width: 0; padding: 2.5rem clamp(1.5rem, 3vw, 3rem) 4rem; }
+
+.masthead { padding-bottom: 2rem; border-bottom: 1px solid var(--rule); }
 
 h1 {
-  font-size: 1.75rem;
+  font-size: 1.875rem;
   font-weight: 600;
   letter-spacing: -0.015em;
-  line-height: 1.25;
+  line-height: 1.2;
   margin: 0 0 .625rem;
 }
 
-.summary { color: var(--muted); margin: 0 0 1.25rem; max-width: 60ch; }
+.summary { color: var(--muted); margin: 0 0 1.25rem; max-width: var(--measure); }
 
 .install {
   display: inline-block;
@@ -95,65 +122,54 @@ h1 {
   background: var(--panel);
   border: 1px solid var(--rule);
   border-radius: 4px;
-  color: var(--ink);
   max-width: 100%;
   overflow-x: auto;
   white-space: nowrap;
 }
-
 .install .prompt { color: var(--muted); user-select: none; }
 
-/* ---------------------------------------------------------------- sections */
+section { padding: 2.5rem 0; border-bottom: 1px solid var(--rule); scroll-margin-top: 1rem; }
+section:last-of-type { border-bottom: 0; }
 
-section { padding: 2.75rem 0; border-top: 1px solid var(--rule); margin-top: 2.75rem; }
+h2 { font-size: 1rem; font-weight: 600; letter-spacing: -0.005em; margin: 0 0 .375rem; }
+h3 { font-size: .875rem; font-weight: 600; margin: 0 0 .25rem; }
 
-h2 {
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: -0.005em;
-  margin: 0 0 .375rem;
-}
-
-.note { color: var(--muted); margin: 0 0 1.5rem; max-width: 62ch; }
+.note { color: var(--muted); margin: 0 0 1.5rem; max-width: var(--measure); }
 .note:last-child { margin-bottom: 0; }
 
-/* -------------------------------------------------------------- converter */
+/* --------------------------------------------------------------- workbench */
+/* The two interactive pieces sit side by side and use the full width. */
 
-.convert {
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  background: var(--panel);
+.workbench {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2rem;
+  align-items: start;
 }
 
+.convert { border: 1px solid var(--rule); border-radius: 6px; background: var(--panel); }
 .convert__fields { display: grid; grid-template-columns: 1fr 1fr; }
 
-.field { padding: 1rem 1.125rem; display: flex; flex-direction: column; gap: .375rem; }
+.field { padding: 1.125rem 1.25rem; display: flex; flex-direction: column; gap: .375rem; min-width: 0; }
 .field + .field { border-left: 1px solid var(--rule); }
 
 .field__label {
-  font-size: .6875rem;
-  font-weight: 500;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  color: var(--muted);
+  font-size: .6875rem; font-weight: 500; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--muted);
 }
-
 .field--bs .field__label { color: var(--bs); }
 .field--ad .field__label { color: var(--ad); }
 
 .field__input {
   width: 100%;
   font-family: var(--mono);
-  font-size: 1.375rem;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.01em;
   color: var(--ink);
   background: transparent;
-  border: 0;
-  padding: 0;
-  outline: none;
+  border: 0; padding: 0; outline: none;
 }
-
 .field__input:focus-visible { outline: 2px solid var(--ad); outline-offset: 3px; border-radius: 2px; }
 
 .field__gloss { font-size: .8125rem; color: var(--muted); min-height: 1.4em; }
@@ -162,7 +178,7 @@ h2 {
 .convert__foot {
   display: flex; align-items: center; justify-content: space-between;
   gap: 1rem; flex-wrap: wrap;
-  padding: .625rem 1.125rem;
+  padding: .625rem 1.25rem;
   border-top: 1px solid var(--rule);
   font-size: .8125rem;
 }
@@ -174,8 +190,7 @@ h2 {
 
 .btn {
   font: inherit; font-size: .75rem; font-weight: 500;
-  padding: .3rem .6rem;
-  color: var(--ink); background: var(--paper);
+  padding: .3rem .6rem; color: var(--ink); background: var(--paper);
   border: 1px solid var(--rule); border-radius: 4px; cursor: pointer;
 }
 .btn:hover { border-color: var(--muted); }
@@ -193,9 +208,7 @@ h2 {
 
 /* ------------------------------------------------------------------ patro */
 
-.patro-row { display: grid; gap: 1.75rem; grid-template-columns: minmax(0, 21rem) minmax(0, 1fr); align-items: start; }
-
-.patro { border: 1px solid var(--rule); border-radius: 6px; padding: .875rem; background: var(--panel); max-width: 21rem; }
+.patro { border: 1px solid var(--rule); border-radius: 6px; padding: .875rem; background: var(--panel); width: 21rem; max-width: 100%; }
 
 .patro__head { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: .625rem; }
 .patro__month { font-size: .875rem; font-weight: 600; }
@@ -214,10 +227,7 @@ h2 {
 
 .patro__grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1px; }
 
-.dow {
-  text-align: center; font-size: .625rem; font-weight: 500;
-  color: var(--muted); padding-bottom: .35rem;
-}
+.dow { text-align: center; font-size: .625rem; font-weight: 500; color: var(--muted); padding-bottom: .35rem; }
 .dow.is-deva { font-family: var(--deva); font-size: .6875rem; }
 
 /* Patro cell: BS day large, its Gregorian day small in the corner. */
@@ -233,11 +243,7 @@ h2 {
 .day:hover:not(:disabled) { background: var(--paper); border-color: var(--rule); }
 .day:focus-visible { outline: 2px solid var(--ad); outline-offset: 1px; }
 
-.day__ad {
-  position: absolute; top: 2px; right: 3px;
-  font-family: var(--mono); font-size: .5rem;
-  color: var(--ad); opacity: .8;
-}
+.day__ad { position: absolute; top: 2px; right: 3px; font-family: var(--mono); font-size: .5rem; color: var(--ad); opacity: .8; }
 
 .day--rest { color: var(--bs); }
 .day--outside { opacity: .32; }
@@ -249,25 +255,25 @@ h2 {
 .key span { display: inline-flex; align-items: center; gap: .3rem; }
 .key i { width: .55rem; height: .55rem; border-radius: 2px; display: inline-block; }
 
-.aside h3 { font-size: .875rem; font-weight: 600; margin: 0 0 .25rem; }
-.aside p { margin: 0 0 1.125rem; color: var(--muted); font-size: .875rem; }
-.aside p:last-child { margin-bottom: 0; }
+/* ------------------------------------------------------------------- cols */
 
-/* ------------------------------------------------------------------ tables */
+.cols { display: grid; gap: 1.5rem 2.5rem; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
+.cols p { margin: 0; color: var(--muted); font-size: .875rem; }
 
-table { width: 100%; border-collapse: collapse; font-size: .875rem; }
-th, td { text-align: left; padding: .5rem .75rem .5rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
-th { font-weight: 600; color: var(--muted); font-size: .75rem; letter-spacing: .03em; text-transform: uppercase; }
-tbody tr:last-child td { border-bottom: 0; }
-td.pkg { font-family: var(--mono); font-size: .8125rem; white-space: nowrap; padding-right: 1.25rem; }
-td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--muted); }
+/* ----------------------------------------------------------------- tables */
 
 .table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: .875rem; }
+th, td { text-align: left; padding: .5rem 1.25rem .5rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: .75rem; letter-spacing: .03em; text-transform: uppercase; }
+tbody tr:last-child td { border-bottom: 0; }
+td.pkg { font-family: var(--mono); font-size: .8125rem; white-space: nowrap; }
+td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--muted); }
 
-/* -------------------------------------------------------------------- code */
+/* ------------------------------------------------------------------- code */
 
 pre {
-  margin: 0 0 1rem;
+  margin: 0;
   overflow-x: auto;
   background: var(--panel);
   border: 1px solid var(--rule);
@@ -277,163 +283,198 @@ pre {
   font-size: .8125rem;
   line-height: 1.7;
 }
-pre:last-child { margin-bottom: 0; }
 .c { color: var(--muted); }
 
-/* ------------------------------------------------------------------ footer */
+footer { padding: 2rem 0 0; color: var(--muted); font-size: .8125rem; max-width: var(--measure); }
 
-footer {
-  border-top: 1px solid var(--rule);
-  margin-top: 2.75rem;
-  padding: 1.5rem 0 3rem;
-  color: var(--muted);
-  font-size: .8125rem;
+/* ---------------------------------------------------------------- narrow */
+
+@media (max-width: 1080px) {
+  .workbench { grid-template-columns: minmax(0, 1fr); }
+  .patro { width: 100%; max-width: 26rem; }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 820px) {
+  .shell { grid-template-columns: 1fr; }
+  .sidebar {
+    position: static; height: auto;
+    flex-direction: row; align-items: center; flex-wrap: wrap;
+    gap: 1rem; padding: 1rem 1.25rem;
+    border-right: 0; border-bottom: 1px solid var(--rule);
+  }
+  .nav { flex-direction: row; flex-wrap: wrap; gap: .25rem; }
+  .side-meta { margin-top: 0; flex-direction: row; gap: 1rem; }
+  .main { padding: 1.75rem 1.25rem 3rem; }
   .convert__fields { grid-template-columns: 1fr; }
   .field + .field { border-left: 0; border-top: 1px solid var(--rule); }
-  .patro-row { grid-template-columns: 1fr; }
 }
 </style>
 
-<div class="page">
-  <div class="topbar">
-    <div class="mark">Bikram Sambat<span class="deva">विक्रम सम्वत्</span></div>
-    <div class="meta">MIT · BS 1975–2100</div>
-  </div>
-
-  <div class="intro">
-    <h1>Bikram Sambat for JavaScript</h1>
-    <p class="summary">
-      Nepali calendar conversion and date pickers for React and React Native.
-      The calendar table is generated from the Yorion engine and checked against
-      it for every day in the supported range.
-    </p>
-    <div class="install"><span class="prompt">$ </span>npm install @inicrea/bikram-sambat-react</div>
-  </div>
-
-  <section>
-    <h2>Convert a date</h2>
-    <p class="note">Type into either field; the other follows.</p>
-
-    <div class="convert">
-      <div class="convert__fields">
-        <div class="field field--bs">
-          <label class="field__label" for="bs-input">Bikram Sambat</label>
-          <input id="bs-input" class="field__input" inputmode="numeric" spellcheck="false" autocomplete="off" value="2083-05-04">
-          <div class="field__gloss" id="bs-long"></div>
-        </div>
-        <div class="field field--ad">
-          <label class="field__label" for="ad-input">Gregorian</label>
-          <input id="ad-input" class="field__input" inputmode="numeric" spellcheck="false" autocomplete="off" value="2026-08-20">
-          <div class="field__gloss" id="ad-long"></div>
-        </div>
-      </div>
-      <div class="convert__foot">
-        <div class="status" id="status" role="status" aria-live="polite"></div>
-        <div class="actions">
-          <div class="langs" role="group" aria-label="Language">
-            <button type="button" id="lang-en" aria-pressed="true">EN</button>
-            <button type="button" id="lang-ne" aria-pressed="false">नेपाली</button>
-          </div>
-          <button type="button" class="btn" id="today-btn">Today</button>
-        </div>
-      </div>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      Bikram Sambat
+      <span class="deva">विक्रम सम्वत्</span>
     </div>
-  </section>
 
-  <section>
-    <h2>Browse the calendar</h2>
-    <p class="note">
-      Each cell carries the Bikram Sambat day with its Gregorian day in the
-      corner, the way a printed patro does. Select a day to send it to the
-      converter.
-    </p>
+    <nav class="nav">
+      <a href="#convert">Convert a date</a>
+      <a href="#calendar">Calendar</a>
+      <a href="#packages">Packages</a>
+      <a href="#usage">Usage</a>
+      <a href="#verification">Range &amp; verification</a>
+    </nav>
 
-    <div class="patro-row">
-      <div>
-        <div class="patro">
-          <div class="patro__head">
-            <button type="button" class="step" id="prev-month" aria-label="Previous month">‹</button>
-            <div style="text-align:center">
-              <div class="patro__month" id="patro-title"></div>
-              <div class="patro__span" id="patro-sub"></div>
+    <div class="side-meta">
+      <a href="https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat">Source on GitHub</a>
+      <span>MIT · BS 1975–2100</span>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="masthead">
+      <h1>Bikram Sambat for JavaScript</h1>
+      <p class="summary">
+        Nepali calendar conversion and date pickers for React and React Native.
+        The calendar table is generated from the Yorion engine and checked
+        against it for every day in the supported range.
+      </p>
+      <div class="install"><span class="prompt">$ </span>npm install @inicrea/bikram-sambat-react</div>
+    </div>
+
+    <section id="convert">
+      <h2>Convert a date</h2>
+      <p class="note">
+        Type into either field and the other follows; select a day in the
+        calendar to send it here.
+      </p>
+
+      <div class="workbench">
+        <div class="convert">
+          <div class="convert__fields">
+            <div class="field field--bs">
+              <label class="field__label" for="bs-input">Bikram Sambat</label>
+              <input id="bs-input" class="field__input" inputmode="numeric" spellcheck="false" autocomplete="off" value="2083-05-04">
+              <div class="field__gloss" id="bs-long"></div>
             </div>
-            <button type="button" class="step" id="next-month" aria-label="Next month">›</button>
+            <div class="field field--ad">
+              <label class="field__label" for="ad-input">Gregorian</label>
+              <input id="ad-input" class="field__input" inputmode="numeric" spellcheck="false" autocomplete="off" value="2026-08-20">
+              <div class="field__gloss" id="ad-long"></div>
+            </div>
           </div>
-          <div class="patro__grid" id="patro-grid"></div>
+          <div class="convert__foot">
+            <div class="status" id="status" role="status" aria-live="polite"></div>
+            <div class="actions">
+              <div class="langs" role="group" aria-label="Language">
+                <button type="button" id="lang-en" aria-pressed="true">EN</button>
+                <button type="button" id="lang-ne" aria-pressed="false">नेपाली</button>
+              </div>
+              <button type="button" class="btn" id="today-btn">Today</button>
+            </div>
+          </div>
         </div>
-        <div class="key">
-          <span><i style="background:var(--bs)"></i>Rest day</span>
-          <span><i style="background:var(--ad)"></i>Gregorian</span>
-          <span><i style="border:1px solid var(--muted)"></i>Today</span>
+
+        <div id="calendar">
+          <div class="patro">
+            <div class="patro__head">
+              <button type="button" class="step" id="prev-month" aria-label="Previous month">‹</button>
+              <div style="text-align:center">
+                <div class="patro__month" id="patro-title"></div>
+                <div class="patro__span" id="patro-sub"></div>
+              </div>
+              <button type="button" class="step" id="next-month" aria-label="Next month">›</button>
+            </div>
+            <div class="patro__grid" id="patro-grid"></div>
+          </div>
+          <div class="key">
+            <span><i style="background:var(--bs)"></i>Rest day</span>
+            <span><i style="background:var(--ad)"></i>Gregorian</span>
+            <span><i style="border:1px solid var(--muted)"></i>Today</span>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="aside">
-        <h3>Weekends change over time</h3>
-        <p>
-          Nepal moved from a Saturday-only weekend to Saturday and Sunday on
-          2026-04-12 (BS 2082-12-29). Navigate to Chaitra 2082 and the grid
-          changes behaviour mid-month.
-        </p>
-        <h3>Month lengths have no formula</h3>
-        <p>
-          Nepali months run 29 to 32 days, set by the almanac rather than a
-          rule. That is why the table is generated rather than typed by hand.
-        </p>
-        <h3>This runs the real package</h3>
-        <p>
-          Everything on this page is <code>@inicrea/bikram-sambat-core</code>
-          running in your browser — not a reimplementation.
-        </p>
+    <section>
+      <h2>How the calendar behaves</h2>
+      <div class="cols">
+        <div>
+          <h3>Each cell carries both calendars</h3>
+          <p>
+            The Bikram Sambat day is set large with its Gregorian day in the
+            corner, the way a printed patro does — so you can read across
+            without converting in your head.
+          </p>
+        </div>
+        <div>
+          <h3>Weekends change over time</h3>
+          <p>
+            Nepal moved from a Saturday-only weekend to Saturday and Sunday on
+            2026-04-12 (BS 2082-12-29). Navigate to Chaitra 2082 and the grid
+            changes behaviour mid-month.
+          </p>
+        </div>
+        <div>
+          <h3>Month lengths have no formula</h3>
+          <p>
+            Nepali months run 29 to 32 days, set by the almanac rather than a
+            rule. That is why the table is generated rather than typed by hand.
+          </p>
+        </div>
+        <div>
+          <h3>This runs the real package</h3>
+          <p>
+            Everything on this page is <code>@inicrea/bikram-sambat-core</code>
+            running in your browser — not a reimplementation.
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <h2>Packages</h2>
-    <p class="note">
-      The conversion lives in one place. Install the package for your platform
-      and it brings the core with it.
-    </p>
-    <div class="table-scroll">
-      <table>
-        <thead>
-          <tr><th>Package</th><th>Contents</th><th>Size</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="pkg">@inicrea/bikram-sambat-core</td>
-            <td>Conversion, formatting, month grids, arithmetic, Nepali fiscal years. Runs in Node, browsers, edge runtimes and Hermes.</td>
-            <td class="num">4.9 kB</td>
-          </tr>
-          <tr>
-            <td class="pkg">@inicrea/bikram-sambat-react</td>
-            <td>Date picker, inline calendar and converter. Keyboard-navigable grid, CSS-variable theming, ships <code>"use client"</code>.</td>
-            <td class="num">5.5 kB</td>
-          </tr>
-          <tr>
-            <td class="pkg">@inicrea/bikram-sambat-react-native</td>
-            <td>The same three components on React Native primitives. No WebAssembly and no native modules, so Expo Go works unmodified.</td>
-            <td class="num">4.6 kB</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="note" style="margin-top:1rem">
-      Sizes are gzipped ESM builds. The two UI packages exclude the core they
-      depend on, and exclude React itself.
-    </p>
-  </section>
+    <section id="packages">
+      <h2>Packages</h2>
+      <p class="note">
+        The conversion lives in one place. Install the package for your platform
+        and it brings the core with it.
+      </p>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Package</th><th>Contents</th><th>Size</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="pkg">@inicrea/bikram-sambat-core</td>
+              <td>Conversion, formatting, month grids, arithmetic, Nepali fiscal years. Runs in Node, browsers, edge runtimes and Hermes.</td>
+              <td class="num">4.9 kB</td>
+            </tr>
+            <tr>
+              <td class="pkg">@inicrea/bikram-sambat-react</td>
+              <td>Date picker, inline calendar and converter. Keyboard-navigable grid, CSS-variable theming, ships <code>"use client"</code>.</td>
+              <td class="num">5.5 kB</td>
+            </tr>
+            <tr>
+              <td class="pkg">@inicrea/bikram-sambat-react-native</td>
+              <td>The same three components on React Native primitives. No WebAssembly and no native modules, so Expo Go works unmodified.</td>
+              <td class="num">4.6 kB</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:1rem">
+        Sizes are gzipped ESM builds. The two UI packages exclude the core they
+        depend on, and exclude React itself.
+      </p>
+    </section>
 
-  <section>
-    <h2>Usage</h2>
-    <p class="note">
-      Values move as <code>"YYYY-MM-DD"</code> strings — Gregorian by default,
-      since that is the safer thing to store.
-    </p>
+    <section id="usage">
+      <h2>Usage</h2>
+      <p class="note">
+        Values move as <code>"YYYY-MM-DD"</code> strings — Gregorian by default,
+        since that is the safer thing to store.
+      </p>
+      <div class="cols">
 <pre><span class="c">// React</span>
 import { BikramDatePicker } from '@inicrea/bikram-sambat-react';
 import '@inicrea/bikram-sambat-react/styles.css';
@@ -442,38 +483,50 @@ import '@inicrea/bikram-sambat-react/styles.css';
 <pre><span class="c">// Node, browser, React Native, edge</span>
 import { adToBs, formatBs } from '@inicrea/bikram-sambat-core';
 
-adToBs('2026-08-20');                             <span class="c">// { year: 2083, month: 5, day: 4 }</span>
-formatBs(bs, 'YYYY MMMM DD', { locale: 'ne' });   <span class="c">// '२०८३ भदौ ०४'</span></pre>
-  </section>
+adToBs('2026-08-20');
+<span class="c">// { year: 2083, month: 5, day: 4 }</span>
 
-  <section>
-    <h2>Range and verification</h2>
-    <p class="note">
-      Dates outside the supported range throw a <code>BikramRangeError</code>
-      rather than returning a wrong result.
-    </p>
-    <div class="table-scroll">
-      <table>
-        <tbody>
-          <tr><td>Bikram Sambat range</td><td class="num">1975-01-01 &ndash; 2100-12-30</td></tr>
-          <tr><td>Gregorian range</td><td class="num">1918-04-13 &ndash; 2044-04-12</td></tr>
-          <tr><td>Days verified against the engine, both directions</td><td class="num">46,022</td></tr>
-          <tr><td>Calendar table, one character per month</td><td class="num">1,512 chars</td></tr>
-          <tr><td>Runtime dependencies</td><td class="num">0</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="note" style="margin-top:1rem">
-      The table is regenerated and re-verified in CI, so a hand-edit or an
-      engine change fails the build instead of shipping.
-    </p>
-  </section>
+formatBs(bs, 'YYYY MMMM DD', { locale: 'ne' });
+<span class="c">// '२०८३ भदौ ०४'</span></pre>
+      </div>
+    </section>
 
-  <footer>
-    MIT © Inicrea Technologies. Calendar data derived from the
-    <a href="https://github.com/Yorion-io/yorion_engine">Yorion engine</a>,
-    licensed MIT OR Apache-2.0.
-  </footer>
+    <section id="verification">
+      <h2>Range and verification</h2>
+      <p class="note">
+        Dates outside the supported range throw a <code>BikramRangeError</code>
+        rather than returning a wrong result.
+      </p>
+      <div class="cols">
+        <div class="table-scroll">
+          <table>
+            <tbody>
+              <tr><td>Bikram Sambat range</td><td class="num">1975-01-01 &ndash; 2100-12-30</td></tr>
+              <tr><td>Gregorian range</td><td class="num">1918-04-13 &ndash; 2044-04-12</td></tr>
+              <tr><td>Days verified, both directions</td><td class="num">46,022</td></tr>
+              <tr><td>Calendar table</td><td class="num">1,512 chars</td></tr>
+              <tr><td>Runtime dependencies</td><td class="num">0</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <p>
+            The table is regenerated and re-verified in CI, so a hand-edit or an
+            engine change fails the build instead of shipping. Nepali month
+            lengths have no closed form, which makes a hand-maintained table a
+            standing correctness risk — generating it removes that whole class
+            of bug.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      MIT © Inicrea Technologies. Calendar data derived from the
+      <a href="https://github.com/Yorion-io/yorion_engine">Yorion engine</a>,
+      licensed MIT OR Apache-2.0.
+    </footer>
+  </main>
 </div>
 <script>
 const Bikram = (function () {
