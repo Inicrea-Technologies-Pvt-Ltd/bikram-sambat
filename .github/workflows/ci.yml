@@ -22,14 +22,16 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      # Build first: the react packages resolve @inicrea/bikram-sambat-core
+      # through its dist/, so typecheck and tests need it to exist.
+      - name: Build
+        run: pnpm build
+
       - name: Typecheck
         run: pnpm typecheck
 
       - name: Unit tests
         run: pnpm test
-
-      - name: Build
-        run: pnpm build
 
       # The generator and verifier run against the vendored Yorion engine, so
       # a hand-edited calendar table or a drifted engine version fails the build

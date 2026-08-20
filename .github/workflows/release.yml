@@ -28,9 +28,10 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - run: pnpm install --frozen-lockfile
+      # Build first — the react packages resolve the core through its dist/.
+      - run: pnpm build
       - run: pnpm typecheck
       - run: pnpm test
-      - run: pnpm build
       - run: pnpm verify
 
       # `pnpm pack` is what rewrites the `workspace:^` protocol into a real
