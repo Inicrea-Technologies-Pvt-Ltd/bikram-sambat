@@ -6,6 +6,17 @@ share a version number and are released together.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.2] - 2026-08-20
+
+Re-release only. No code, data or documentation changes: the published tarballs
+are identical in content to 0.1.1.
+
+The commit history was rewritten to drop a trailer from the commit messages,
+which changed every commit SHA. npm provenance is pinned to the SHA it was
+built from, so the attestations for 0.1.0 and 0.1.1 now reference commits that
+are no longer on any branch. This release restores a provenance statement that
+points at a commit that actually exists.
+
 ## [0.1.1] - 2026-08-20
 
 ### Changed
@@ -68,3 +79,4 @@ First release.
 
 [0.1.0]: https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat/releases/tag/v0.1.0
 [0.1.1]: https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat/releases/tag/v0.1.1
+[0.1.2]: https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat/releases/tag/v0.1.2

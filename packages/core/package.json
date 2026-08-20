@@ -1,6 +1,6 @@
 {
   "name": "@inicrea/bikram-sambat-core",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Bikram Sambat (Nepali calendar) date conversion for JavaScript. Pure TypeScript, zero dependencies, works in Node, browsers and React Native.",
   "keywords": [
     "bikram-sambat",
