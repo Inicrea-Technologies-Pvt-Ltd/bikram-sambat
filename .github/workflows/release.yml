@@ -47,12 +47,22 @@ jobs:
           ls -la .artifacts
 
       # core first — the UI packages depend on it.
-      # Provenance is generated automatically under trusted publishing; no
-      # --provenance flag and no NODE_AUTH_TOKEN needed.
+      #
+      # Two auth paths, in the npm CLI's own order of preference:
+      #   1. OIDC trusted publishing, once each package is linked to this repo
+      #      in its npm settings. Nothing to configure here beyond the
+      #      id-token permission above, and provenance is automatic.
+      #   2. NPM_TOKEN, used only if OIDC is unavailable — which is the case
+      #      for a package's very first publish, since a trusted publisher
+      #      cannot be attached to a package that does not exist yet.
+      # Once 0.1.0 is out and trusted publishing is configured, the secret can
+      # be deleted and this keeps working.
       - name: Publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           # The [0-9] guard matters: a bare `react-*` glob also matches
           # `react-native-*`, which would publish the wrong tarball.
-          npm publish .artifacts/inicrea-bikram-sambat-core-[0-9]*.tgz --access public
-          npm publish .artifacts/inicrea-bikram-sambat-react-[0-9]*.tgz --access public
-          npm publish .artifacts/inicrea-bikram-sambat-react-native-[0-9]*.tgz --access public
+          npm publish .artifacts/inicrea-bikram-sambat-core-[0-9]*.tgz --access public --provenance
+          npm publish .artifacts/inicrea-bikram-sambat-react-[0-9]*.tgz --access public --provenance
+          npm publish .artifacts/inicrea-bikram-sambat-react-native-[0-9]*.tgz --access public --provenance
