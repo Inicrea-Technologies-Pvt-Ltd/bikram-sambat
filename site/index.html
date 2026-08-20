@@ -327,7 +327,7 @@ footer { padding: 2rem 0 0; color: var(--muted); font-size: .8125rem; max-width:
 
     <div class="side-meta">
       <a href="https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat">Source on GitHub</a>
-      <span>MIT · BS 1975–2100</span>
+      <span>MIT · BS 1975-2100</span>
     </div>
   </aside>
 
@@ -403,7 +403,7 @@ footer { padding: 2rem 0 0; color: var(--muted); font-size: .8125rem; max-width:
           <h3>Each cell carries both calendars</h3>
           <p>
             The Bikram Sambat day is set large with its Gregorian day in the
-            corner, the way a printed patro does — so you can read across
+            corner, the way a printed patro does, so you can read across
             without converting in your head.
           </p>
         </div>
@@ -426,7 +426,7 @@ footer { padding: 2rem 0 0; color: var(--muted); font-size: .8125rem; max-width:
           <h3>This runs the real package</h3>
           <p>
             Everything on this page is <code>@inicrea/bikram-sambat-core</code>
-            running in your browser — not a reimplementation.
+            running in your browser, not a reimplementation.
           </p>
         </div>
       </div>
@@ -471,7 +471,7 @@ footer { padding: 2rem 0 0; color: var(--muted); font-size: .8125rem; max-width:
     <section id="usage">
       <h2>Usage</h2>
       <p class="note">
-        Values move as <code>"YYYY-MM-DD"</code> strings — Gregorian by default,
+        Values move as <code>"YYYY-MM-DD"</code> strings. Gregorian by default,
         since that is the safer thing to store.
       </p>
       <div class="cols">
@@ -501,8 +501,8 @@ formatBs(bs, 'YYYY MMMM DD', { locale: 'ne' });
         <div class="table-scroll">
           <table>
             <tbody>
-              <tr><td>Bikram Sambat range</td><td class="num">1975-01-01 &ndash; 2100-12-30</td></tr>
-              <tr><td>Gregorian range</td><td class="num">1918-04-13 &ndash; 2044-04-12</td></tr>
+              <tr><td>Bikram Sambat range</td><td class="num">1975-01-01 to 2100-12-30</td></tr>
+              <tr><td>Gregorian range</td><td class="num">1918-04-13 to 2044-04-12</td></tr>
               <tr><td>Days verified, both directions</td><td class="num">46,022</td></tr>
               <tr><td>Calendar table</td><td class="num">1,512 chars</td></tr>
               <tr><td>Runtime dependencies</td><td class="num">0</td></tr>
@@ -514,7 +514,7 @@ formatBs(bs, 'YYYY MMMM DD', { locale: 'ne' });
             The table is regenerated and re-verified in CI, so a hand-edit or an
             engine change fails the build instead of shipping. Nepali month
             lengths have no closed form, which makes a hand-maintained table a
-            standing correctness risk — generating it removes that whole class
+            standing correctness risk, generating it removes that whole class
             of bug.
           </p>
         </div>
@@ -635,7 +635,7 @@ function renderPatro() {
 
   const first = calendar.days[0];
   const last = calendar.days[calendar.days.length - 1];
-  $('patro-sub').textContent = `${first.ad} — ${last.ad}`;
+  $('patro-sub').textContent = `${first.ad} to ${last.ad}`;
 
   $('prev-month').disabled = view.year === MIN_BS_YEAR && view.month === 1;
   $('next-month').disabled = view.year === MAX_BS_YEAR && view.month === 12;

@@ -1,5 +1,5 @@
 /**
- * GENERATED FILE — do not edit by hand.
+ * GENERATED FILE. Do not edit by hand.
  *
  * Produced by `pnpm gendata` from the Yorion engine v0.4.0
  * (https://github.com/Yorion-io/yorion_engine, MIT OR Apache-2.0).

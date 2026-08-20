@@ -1,8 +1,8 @@
 /**
  * Prepends the "use client" directive to the built bundles.
  *
- * tsup's `banner` is dropped during bundling — rollup treats a module-level
- * directive in generated output as an error source and strips it — so the
+ * tsup's `banner` is dropped during bundling, rollup treats a module-level
+ * directive in generated output as an error source and strips it, so the
  * directive has to go on afterwards. Without it, Next.js App Router users get
  * "useState only works in a Client Component" the first time they render the
  * picker.

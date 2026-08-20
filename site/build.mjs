@@ -2,7 +2,7 @@
  * Builds docs/index.html by inlining the built core bundle into site/index.html.
  *
  * The demo runs the real published code rather than a copy, so the page cannot
- * drift from the package — and it stays a single self-contained file with no
+ * drift from the package, and it stays a single self-contained file with no
  * network requests, which is what static hosting and Artifacts both want.
  */
 import { readFile, writeFile, mkdir } from 'node:fs/promises';

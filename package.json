@@ -2,7 +2,7 @@
   "name": "inicrea-bikram",
   "private": true,
   "version": "0.0.0",
-  "description": "Bikram Sambat (Nepali calendar) toolkit for JavaScript \u2014 conversion core, React and React Native date pickers.",
+  "description": "Bikram Sambat (Nepali calendar) toolkit for JavaScript: conversion core, React and React Native date pickers.",
   "license": "MIT",
   "packageManager": "pnpm@9.15.0",
   "engines": {

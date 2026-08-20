@@ -1,5 +1,5 @@
 /**
- * @inicrea/bikram-sambat-react-native — Bikram Sambat date picker, calendar and
+ * @inicrea/bikram-sambat-react-native: Bikram Sambat date picker, calendar and
  * converter for React Native.
  *
  * Pure JavaScript: no WebAssembly (Hermes has none) and no native modules, so

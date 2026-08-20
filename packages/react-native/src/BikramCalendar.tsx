@@ -25,7 +25,7 @@ export interface BikramCalendarProps {
   min?: BsDate | null;
   max?: BsDate | null;
   isDateDisabled?: (day: BsCalendarDay) => boolean;
-  /** Extra content inside a day cell — a holiday dot, for instance. */
+  /** Extra content inside a day cell: a holiday dot, for instance. */
   dayContent?: (day: BsCalendarDay) => ReactNode;
   showOutsideDays?: boolean;
   showFooter?: boolean;
@@ -38,7 +38,7 @@ export interface BikramCalendarProps {
 }
 
 /**
- * A Bikram Sambat month grid built from React Native primitives — no
+ * A Bikram Sambat month grid built from React Native primitives, no
  * WebAssembly and no native modules, so it runs on Hermes as-is.
  */
 export function BikramCalendar({

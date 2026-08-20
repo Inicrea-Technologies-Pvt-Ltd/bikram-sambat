@@ -2,10 +2,10 @@
 import { bsToAdIso, daysInBsMonth } from './convert';
 import type { BsDate, NepaliFiscalYear } from './types';
 
-/** BS month index of Shrawan — the first month of the fiscal year. */
+/** BS month index of Shrawan: the first month of the fiscal year. */
 export const SHRAWAN = 4;
 
-/** BS month index of Ashadh — the last month of the fiscal year. */
+/** BS month index of Ashadh: the last month of the fiscal year. */
 export const ASHADH = 3;
 
 /**

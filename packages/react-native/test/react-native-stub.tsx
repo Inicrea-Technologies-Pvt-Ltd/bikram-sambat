@@ -1,8 +1,8 @@
 /**
  * Minimal React Native primitives rendered as DOM elements.
  *
- * This exists so the components' own logic — selection, navigation, bounds,
- * conversion — can be tested in jsdom. It stubs React Native's surface, not its
+ * This exists so the components' own logic (selection, navigation, bounds,
+ * conversion) can be tested in jsdom. It stubs React Native's surface, not its
  * behaviour: it proves our code is correct, not that RN renders it a certain way.
  */
 import { forwardRef, type ReactNode } from 'react';
@@ -49,7 +49,7 @@ export const Text = forwardRef<HTMLSpanElement, BaseProps>(function Text(props, 
 /**
  * React Native lets Pressables nest (a modal backdrop wrapping its content is
  * the standard idiom); the DOM does not let `<button>` nest. So only a
- * Pressable that declares `accessibilityRole="button"` becomes a real button —
+ * Pressable that declares `accessibilityRole="button"` becomes a real button -
  * wrappers like the backdrop become a div with the role applied instead.
  */
 export const Pressable = forwardRef<HTMLElement, PressableProps>(function Pressable(props, ref) {

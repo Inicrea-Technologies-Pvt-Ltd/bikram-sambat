@@ -28,7 +28,7 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - run: pnpm install --frozen-lockfile
-      # Build first — the react packages resolve the core through its dist/.
+      # Build first: the react packages resolve the core through its dist/.
       - run: pnpm build
       - run: pnpm typecheck
       - run: pnpm test
@@ -46,13 +46,13 @@ jobs:
           done
           ls -la .artifacts
 
-      # core first — the UI packages depend on it.
+      # core first: the UI packages depend on it.
       #
       # Two auth paths, in the npm CLI's own order of preference:
       #   1. OIDC trusted publishing, once each package is linked to this repo
       #      in its npm settings. Nothing to configure here beyond the
       #      id-token permission above, and provenance is automatic.
-      #   2. NPM_TOKEN, used only if OIDC is unavailable — which is the case
+      #   2. NPM_TOKEN, used only if OIDC is unavailable, which is the case
       #      for a package's very first publish, since a trusted publisher
       #      cannot be attached to a package that does not exist yet.
       # Once 0.1.0 is out and trusted publishing is configured, the secret can

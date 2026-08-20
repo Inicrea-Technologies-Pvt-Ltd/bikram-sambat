@@ -24,7 +24,7 @@ export interface UseBikramCalendarOptions {
   selected?: BsDate | null;
   /** Month shown on first render when uncontrolled. Defaults to the selection, else today. */
   defaultMonth?: BsDate;
-  /** Controlled visible month — pass with `onMonthChange` to drive navigation yourself. */
+  /** Controlled visible month, pass with `onMonthChange` to drive navigation yourself. */
   month?: BsDate;
   onMonthChange?: (month: BsDate) => void;
   locale?: BikramLocale;
@@ -60,7 +60,7 @@ export interface UseBikramCalendarResult {
 }
 
 /**
- * Calendar state without any markup — month navigation, the day grid, and
+ * Calendar state without any markup, month navigation, the day grid, and
  * which days are selectable. Use it when you want your own UI; the bundled
  * components are built on exactly this.
  */
@@ -100,7 +100,7 @@ export function useBikramCalendar(options: UseBikramCalendarOptions = {}): UseBi
       try {
         goToMonth(addBsMonths(month, months));
       } catch {
-        // Already at the edge of the supported range — nothing to do.
+        // Already at the edge of the supported range, nothing to do.
       }
     },
     [goToMonth, month],
@@ -147,7 +147,7 @@ export function useBikramCalendar(options: UseBikramCalendarOptions = {}): UseBi
   );
 
   // A month is reachable when it still holds at least one selectable day, and
-  // when it exists at all — BS 2100 Chaitra has no month after it.
+  // when it exists at all. BS 2100 Chaitra has no month after it.
   const previousMonth = tryAddMonths(month, -1);
   const nextMonth = tryAddMonths(month, 1);
   const canGoPreviousMonth =

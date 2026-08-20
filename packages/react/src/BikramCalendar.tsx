@@ -46,7 +46,7 @@ export interface BikramCalendarProps {
   min?: BsDate | null;
   max?: BsDate | null;
   isDateDisabled?: (day: BsCalendarDay) => boolean;
-  /** Render extra content inside a day cell — a holiday dot, for instance. */
+  /** Render extra content inside a day cell: a holiday dot, for instance. */
   dayContent?: (day: BsCalendarDay) => ReactNode;
   /** Tooltip for a day cell. A natural place to surface holiday names. */
   dayTitle?: (day: BsCalendarDay) => string | undefined;
@@ -54,7 +54,7 @@ export interface BikramCalendarProps {
   showOutsideDays?: boolean;
   /** Show the footer with the AD equivalent and a "Today" shortcut. Defaults to true. */
   showFooter?: boolean;
-  /** Focus the calendar when it mounts — used by the picker popover. */
+  /** Focus the calendar when it mounts, used by the picker popover. */
   autoFocus?: boolean;
   className?: string;
   classNames?: BikramCalendarClassNames;
@@ -63,7 +63,7 @@ export interface BikramCalendarProps {
 }
 
 /**
- * A BS month grid. Standalone and fully keyboard-navigable — arrow keys move a
+ * A BS month grid. Standalone and fully keyboard-navigable, arrow keys move a
  * day at a time, PageUp/PageDown a month, Home/End to the month's edges.
  */
 export function BikramCalendar({
@@ -250,7 +250,7 @@ export function BikramCalendar({
       <div
         ref={gridRef}
         role="grid"
-        aria-label={ariaLabel ?? `${caption} — Bikram Sambat calendar`}
+        aria-label={ariaLabel ?? `${caption}. Bikram Sambat calendar`}
         className={cx('bikram__grid', classNames.grid)}
         onKeyDown={handleKeyDown}
       >

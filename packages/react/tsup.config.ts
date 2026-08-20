@@ -10,6 +10,6 @@ export default defineConfig({
   target: 'es2020',
   external: ['react', 'react-dom', '@inicrea/bikram-sambat-core'],
   // The "use client" directive is added by scripts/add-use-client.mjs after
-  // the build — a banner here is stripped during bundling.
+  // the build: a banner here is stripped during bundling.
   outExtension: ({ format }) => ({ js: format === 'cjs' ? '.cjs' : '.js' }),
 });

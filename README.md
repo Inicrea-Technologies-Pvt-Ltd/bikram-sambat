@@ -1,7 +1,7 @@
 # Bikram Sambat for JavaScript
 
-Nepali calendar conversion and date pickers that work everywhere — Node, browsers,
-edge runtimes and React Native — with the calendar data verified day-by-day against
+Nepali calendar conversion and date pickers that work everywhere (Node, browsers,
+edge runtimes and React Native) with the calendar data verified day-by-day against
 a Rust calendar engine.
 
 | Package | What it is | Size |
@@ -13,8 +13,10 @@ a Rust calendar engine.
 Sizes are gzipped ESM builds; the UI packages exclude `core`, which they depend
 on, and exclude `react`/`react-native` themselves.
 
-**Live demo and docs: [inicrea-technologies-pvt-ltd.github.io/bikram-sambat](https://inicrea-technologies-pvt-ltd.github.io/bikram-sambat/)** — a working
-BS ⇄ AD converter and patro calendar, running the real package in your browser.
+**Live demo and docs: [inicrea-technologies-pvt-ltd.github.io/bikram-sambat](https://inicrea-technologies-pvt-ltd.github.io/bikram-sambat/)**
+
+A working BS ⇄ AD converter and patro calendar, running the real package in
+your browser.
 
 ```bash
 npm install @inicrea/bikram-sambat-react
@@ -31,16 +33,16 @@ import '@inicrea/bikram-sambat-react/styles.css';
 
 **The calendar data is derived, not transcribed.** Nepali month lengths vary
 between 29 and 32 days with no formula behind them, so every JavaScript library
-carries a hand-maintained table — and a typo in one year silently corrupts every
+carries a hand-maintained table, and a typo in one year silently corrupts every
 date after it. Ours is generated from the
 [Yorion engine](https://github.com/Yorion-io/yorion_engine) (Rust, MIT OR
 Apache-2.0) and then checked against it **every single day from BS 1975 to
-2100 — all 46,022 of them**, in both directions, including weekdays and month
+2100, all 46,022 of them**, in both directions, including weekdays and month
 lengths. `pnpm verify` re-runs that sweep.
 
 **It runs on React Native.** Hermes has no WebAssembly, so WASM-backed
 converters are web-only. The core here is plain TypeScript with no
-dependencies, no native modules and nothing to link — it works in Expo Go.
+dependencies, no native modules and nothing to link. It works in Expo Go.
 
 **Weekends are handled as history, not a constant.** Nepal moved from a
 one-day weekend to Saturday *and* Sunday on **2026-04-12 (BS 2082-12-29)**. A
@@ -55,7 +57,7 @@ conversion takes an explicit `utc` option.
 
 BS **1975-01-01 → 2100-12-30**, i.e. AD **1918-04-13 → 2044-04-12**. Anything
 outside throws a `BikramRangeError` with a `code` of `OUT_OF_RANGE` or
-`INVALID_DATE` — never a silently wrong date.
+`INVALID_DATE`, never a silently wrong date.
 
 ## Quick reference
 
@@ -75,8 +77,8 @@ Full API in each package's README:
 
 ## Demo
 
-`docs/index.html` is a single self-contained page — a live BS ⇄ AD converter and
-a patro calendar — that inlines the built core, so it demonstrates the real
+`docs/index.html` is a single self-contained page holding a live BS ⇄ AD
+converter and a patro calendar. It inlines the built core, so it demonstrates the real
 package rather than a copy. Serve `docs/` anywhere static (GitHub Pages works
 with no configuration):
 
@@ -112,4 +114,4 @@ pnpm site           # rebuild docs/index.html from site/index.html
 ## Licence
 
 MIT © Inicrea Technologies. Calendar data derived from the Yorion engine
-(MIT OR Apache-2.0) — see [NOTICE](NOTICE).
+(MIT OR Apache-2.0). See [NOTICE](NOTICE).

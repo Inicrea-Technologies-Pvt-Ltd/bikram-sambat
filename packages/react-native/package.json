@@ -1,7 +1,7 @@
 {
   "name": "@inicrea/bikram-sambat-react-native",
-  "version": "0.1.0",
-  "description": "Bikram Sambat (Nepali) date picker and converter for React Native \u2014 no WebAssembly, no native modules, works on Hermes.",
+  "version": "0.1.1",
+  "description": "Bikram Sambat (Nepali) date picker and converter for React Native. No WebAssembly, no native modules, works on Hermes.",
   "keywords": [
     "react-native",
     "nepali-datepicker",

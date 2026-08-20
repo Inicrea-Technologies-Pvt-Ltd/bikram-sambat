@@ -1,5 +1,5 @@
 /**
- * @inicrea/bikram-sambat-react — Bikram Sambat date picker, calendar and converter
+ * @inicrea/bikram-sambat-react: Bikram Sambat date picker, calendar and converter
  * for React.
  *
  * Everything from `@inicrea/bikram-sambat-core` is re-exported, so a single install

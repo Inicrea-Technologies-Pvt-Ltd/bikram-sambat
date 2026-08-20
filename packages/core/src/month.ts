@@ -1,4 +1,4 @@
-/** Month grids — the shape a date picker actually renders. */
+/** Month grids: the shape a date picker actually renders. */
 import {
   addBsDays,
   bsToAdIso,
@@ -121,7 +121,7 @@ export function getBsMonthCalendar(
 /**
  * A padding cell `offset` days from `anchor`. At the very edges of the
  * supported range there is no neighbouring day to show, so the anchor is
- * reused and flagged `outside` — better a duplicate than a thrown error in
+ * reused and flagged `outside`, better a duplicate than a thrown error in
  * the middle of a render.
  */
 function padCell(

@@ -11,7 +11,7 @@ export type BikramLocale = 'en' | 'ne';
 /**
  * How a JavaScript `Date` is mapped to a calendar date.
  *
- * A `Date` is an instant, a calendar date is not — the two only line up once
+ * A `Date` is an instant, a calendar date is not: the two only line up once
  * you pick a timezone. `utc: false` (the default) reads the date the way the
  * user's clock shows it; `utc: true` reads its UTC components, which is what
  * you want if you store dates as UTC-midnight instants.
@@ -27,7 +27,7 @@ export type WeekendPolicy = 'nepal' | 'saturday' | 'saturday-sunday' | readonly 
 export interface BsCalendarDay {
   /** BS day of month. */
   day: number;
-  /** BS month this day belongs to — differs from the grid's month for padding days. */
+  /** BS month this day belongs to, differs from the grid's month for padding days. */
   month: number;
   /** BS year this day belongs to. */
   year: number;
@@ -55,13 +55,13 @@ export interface BsMonthCalendar {
   startWeekday: number;
   /** Days of this month only, in order. */
   days: BsCalendarDay[];
-  /** Days padded to whole weeks, 7 per row — what a grid actually renders. */
+  /** Days padded to whole weeks, 7 per row, what a grid actually renders. */
   weeks: BsCalendarDay[][];
 }
 
 /** The Nepali fiscal year, which runs Shrawan 1 to the end of Ashadh. */
 export interface NepaliFiscalYear {
-  /** BS year the fiscal year starts in — a stable key. */
+  /** BS year the fiscal year starts in: a stable key. */
   bsYear: number;
   /** AD date of Shrawan 1, as "YYYY-MM-DD". */
   startAd: string;

@@ -1,7 +1,7 @@
 # @inicrea/bikram-sambat-core
 
 Bikram Sambat (Nepali calendar) date conversion for JavaScript. Pure TypeScript,
-**zero runtime dependencies**, no WebAssembly — so it runs identically in Node,
+**zero runtime dependencies**, no WebAssembly, so it runs identically in Node,
 browsers, edge runtimes and React Native (Hermes).
 
 ```bash
@@ -13,8 +13,8 @@ npm install @inicrea/bikram-sambat-core
 The calendar table is **generated** from the
 [Yorion engine](https://github.com/Yorion-io/yorion_engine) (Rust, MIT OR
 Apache-2.0) rather than transcribed by hand, then verified against it for
-**all 46,022 days from BS 1975 to BS 2100** — both directions, plus weekdays and
-month lengths. Nepali months run 29–32 days with no underlying formula, so a
+**all 46,022 days from BS 1975 to BS 2100**, both directions, plus weekdays and
+month lengths. Nepali months run 29-32 days with no underlying formula, so a
 single mistyped year silently corrupts every later date; generating removes that
 whole class of bug.
 
@@ -27,7 +27,7 @@ The engine runs at build time only and is never shipped in this package.
 | BS | 1975-01-01 | 2100-12-30 |
 | AD | 1918-04-13 | 2044-04-12 |
 
-Outside that range you get a `BikramRangeError` — never a wrong date.
+Outside that range you get a `BikramRangeError`, never a wrong date.
 
 ## Conversion
 
@@ -71,7 +71,7 @@ formatBs(bs, '[BS] YYYY');                           // 'BS 2083'  (brackets are
 
 parseBs('2083-04-05');                    // { year: 2083, month: 4, day: 5 }
 parseBs('०५/०४/२०८३', 'DD/MM/YYYY');       // Nepali digits are fine
-parseBs('nonsense');                      // null — never throws
+parseBs('nonsense');                      // null, never throws
 
 toNepaliDigits('2083-04-05');             // '२०८३-०४-०५'
 ```
@@ -81,7 +81,7 @@ toNepaliDigits('2083-04-05');             // '२०८३-०४-०५'
 | `YYYY` `YY` | 2083, 83 | | `dddd` | Tuesday / मङ्गलबार |
 | `MMMM` `MMM` | Shrawan, Shr | | `ddd` | Tue / मङ्गल |
 | `MM` `M` | 04, 4 | | `dd` | T / मं |
-| `DD` `D` | 05, 5 | | `d` | 0–6 |
+| `DD` `D` | 05, 5 | | `d` | 0-6 |
 
 ## Month grids
 
@@ -106,7 +106,7 @@ Each day carries `{ day, month, year, ad, weekday, outside, weekend, today }`.
 
 Nepal moved from a Saturday-only weekend to Saturday **and** Sunday on
 **2026-04-12 (BS 2082-12-29)**. The default `'nepal'` policy models that, so a
-grid spanning the changeover switches behaviour mid-month — which is correct,
+grid spanning the changeover switches behaviour mid-month, which is correct,
 and what a fixed `[0, 6]` list gets wrong.
 
 ```ts
@@ -116,7 +116,7 @@ getBsMonthCalendar(2083, 1, { weekend: 'saturday-sunday' });   // force two-day
 getBsMonthCalendar(2083, 1, { weekend: [5, 6] });              // your own policy
 ```
 
-Holidays are deliberately not bundled — they change by government notice every
+Holidays are deliberately not bundled: they change by government notice every
 year. Supply your own and render them through the components' `dayTitle` /
 `dayContent` props.
 
@@ -165,4 +165,4 @@ try {
 ## Licence
 
 MIT © Inicrea Technologies. Calendar data derived from the Yorion engine
-(MIT OR Apache-2.0) — see [NOTICE](./NOTICE).
+(MIT OR Apache-2.0). See [NOTICE](./NOTICE).

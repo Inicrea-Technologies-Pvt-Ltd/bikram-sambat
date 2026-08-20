@@ -105,7 +105,7 @@ export function parseBs(input: string, pattern: string = 'YYYY-MM-DD'): BsDate |
   });
 
   let year = parts['Y']!;
-  // Two-digit years are read as 20xx — the BS range starts at 1975, so a bare
+  // Two-digit years are read as 20xx: the BS range starts at 1975, so a bare
   // "83" can only sensibly mean 2083.
   if (year < 100) year += 2000;
 

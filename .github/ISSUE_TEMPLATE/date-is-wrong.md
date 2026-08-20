@@ -12,8 +12,8 @@ labels: bug
 
 **Expected**
 
-<!-- Where the expected value comes from — a printed patro, a government
-     calendar, another library — is genuinely useful here. -->
+<!-- Where the expected value comes from: a printed patro, a government
+     calendar, another library, is genuinely useful here. -->
 
 **Package and version**
 

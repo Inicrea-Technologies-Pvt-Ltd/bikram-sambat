@@ -32,8 +32,8 @@ Requires React Native ≥ 0.70 and React ≥ 18. No `pod install`, no config plu
 <BikramDatePicker
   value={date}
   onChange={(value, { ad, bs }) => {
-    value;  // '2026-08-20'   — matches valueFormat
-    ad;     // '2026-08-20'   — always AD
+    value;  // '2026-08-20'   (matches valueFormat)
+    ad;     // '2026-08-20'   (always AD)
     bs;     // { year: 2083, month: 5, day: 4 }
   }}
 />
@@ -48,12 +48,12 @@ dismisses it; Android's back button is handled through `onRequestClose`.
 
 | Prop | Default | |
 | --- | --- | --- |
-| `value` / `onChange` | — | `"YYYY-MM-DD"` in and out |
+| `value` / `onChange` | - | `"YYYY-MM-DD"` in and out |
 | `valueFormat` | `'AD'` | `'AD'` or `'BS'` |
 | `format` | `'YYYY MMMM DD'` | display pattern for the field |
 | `locale` | `'en'` | `'en'` or `'ne'` |
-| `min` / `max` | — | bounds |
-| `theme` | — | partial palette override |
+| `min` / `max` | - | bounds |
+| `theme` | - | partial palette override |
 | `colorScheme` | `'light'` | base palette |
 | `weekStartsOn` | `0` | 0 = Sunday |
 | `weekend` | `'nepal'` | history-aware weekend policy |
@@ -65,7 +65,7 @@ The month grid on its own, for inline calendars and bottom sheets.
 
 ### `<BikramDateConverter />`
 
-Two `TextInput`s wired together — type BS, get AD, and the other way round.
+Two `TextInput`s wired together. Type BS, get AD, or the other way round.
 
 ```tsx
 <BikramDateConverter defaultValue="2026-08-20" onChange={({ ad, bs }) => {}} />
@@ -73,7 +73,7 @@ Two `TextInput`s wired together — type BS, get AD, and the other way round.
 
 ### `useBikramCalendar()`
 
-The state behind the components with no UI, for building your own layout —
+The state behind the components with no UI, for building your own layout:
 month navigation, the day grid, and which days are selectable.
 
 ## Theming
@@ -98,7 +98,7 @@ use, so you can build a matching design of your own.
 
 ## Holidays
 
-Not bundled — they change by government notice each year. Supply your own
+Not bundled: they change by government notice each year. Supply your own
 through `dayContent` and `isDateDisabled`:
 
 ```tsx
@@ -114,11 +114,11 @@ Weekends are handled for you, including Nepal's move to a two-day weekend on
 ## Accessibility
 
 Every day is a `Pressable` with `accessibilityRole="button"` and a label
-carrying both calendars — *"5 Shrawan 2083 (2026-07-21)"* — plus
+carrying both calendars, *"5 Shrawan 2083 (2026-07-21)"*, plus
 `accessibilityState` for selected and disabled days. Screen-reader users hear
 the AD date alongside the BS one.
 
 ## Licence
 
 MIT © Inicrea Technologies. Calendar data derived from the Yorion engine
-(MIT OR Apache-2.0) — see [NOTICE](./NOTICE).
+(MIT OR Apache-2.0). See [NOTICE](./NOTICE).

@@ -1,5 +1,5 @@
 /**
- * @inicrea/bikram-sambat-core — Bikram Sambat (Nepali calendar) conversion.
+ * @inicrea/bikram-sambat-core: Bikram Sambat (Nepali calendar) conversion.
  *
  * Pure TypeScript, zero runtime dependencies, and no WebAssembly, so it runs
  * the same in Node, browsers, edge runtimes and React Native (Hermes).

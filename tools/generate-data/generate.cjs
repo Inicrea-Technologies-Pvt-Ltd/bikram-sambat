@@ -94,7 +94,7 @@ console.log(`encoded ${years.length} years / ${totalDays} days (${encoded.length
 
 // ---- weekend policy -----------------------------------------------------
 // Nepal moved from a one-day (Sat) to a two-day (Sat+Sun) weekend. Find the
-// exact changeover day rather than a remembered date — and to the day, not the
+// exact changeover day rather than a remembered date, and to the day, not the
 // month, since the switch lands mid-month.
 const location = new engine.Location(27.7172, 85.324, 'Kathmandu', 345);
 location.follow_nepal_social_calendar = true;
@@ -125,7 +125,7 @@ console.log(
 
 // ---- emit data.ts -------------------------------------------------------
 const banner = `/**
- * GENERATED FILE — do not edit by hand.
+ * GENERATED FILE. Do not edit by hand.
  *
  * Produced by \`pnpm gendata\` from the Yorion engine v0.4.0
  * (https://github.com/Yorion-io/yorion_engine, MIT OR Apache-2.0).

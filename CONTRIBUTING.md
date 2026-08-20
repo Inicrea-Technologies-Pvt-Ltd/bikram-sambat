@@ -3,7 +3,7 @@
 Thanks for taking a look. This is a small codebase with one unusual rule, so
 it is worth reading the first section before changing anything.
 
-## The calendar data is generated — never edit it by hand
+## The calendar data is generated: never edit it by hand
 
 `packages/core/src/data.ts` is the whole calendar: 126 BS years packed into
 1,512 characters. It is **generated** by `tools/generate-data/generate.cjs`
@@ -11,8 +11,8 @@ from the [Yorion engine](https://github.com/Yorion-io/yorion_engine), which is
 vendored under `tools/generate-data/vendor` as a build-time input only and is
 never published.
 
-Nepali month lengths run 29–32 days with no formula behind them, so the table
-is the only source of truth — and a single wrong year silently corrupts every
+Nepali month lengths run 29-32 days with no formula behind them, so the table
+is the only source of truth, and a single wrong year silently corrupts every
 date after it. Hand-editing is how that happens.
 
 ```bash
@@ -60,7 +60,7 @@ tools/generate-data      the generator and the exhaustive verifier
 
 - **`packages/react-native/test/react-native-stub.tsx`** renders React Native
   primitives as DOM elements so the components can be tested in jsdom. It stubs
-  React Native's *surface*, not its behaviour — these tests prove our logic is
+  React Native's *surface*, not its behaviour. These tests prove our logic is
   correct, not that React Native renders it a particular way. Type checking runs
   against the real `react-native` types, not the stub.
 
@@ -71,7 +71,7 @@ tools/generate-data      the generator and the exhaustive verifier
 
 - **Timezones.** `"YYYY-MM-DD"` strings are the canonical interchange format.
   A `Date` is an instant and a calendar date is not; anything converting between
-  them takes an explicit `utc` option. Please keep it that way — defaulting to
+  them takes an explicit `utc` option. Please keep it that way. Defaulting to
   UTC is how apps in Kathmandu end up showing yesterday.
 
 ## Reporting a date bug

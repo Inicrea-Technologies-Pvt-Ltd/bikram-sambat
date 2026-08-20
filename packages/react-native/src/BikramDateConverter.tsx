@@ -14,7 +14,7 @@ import {
 import { createStyles, resolveTheme, type BikramTheme } from './theme';
 
 export interface BikramDateConverterProps {
-  /** Date the tool starts on — an AD "YYYY-MM-DD" string or a BS date. */
+  /** Date the tool starts on: an AD "YYYY-MM-DD" string or a BS date. */
   defaultValue?: string | BsDate;
   locale?: BikramLocale;
   onChange?: (detail: { ad: string; bs: BsDate }) => void;

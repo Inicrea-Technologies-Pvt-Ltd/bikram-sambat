@@ -19,7 +19,7 @@ function JoinDate() {
 }
 ```
 
-Works in Next.js App Router as-is — the bundle carries the `"use client"`
+Works in Next.js App Router as-is: the bundle carries the `"use client"`
 directive.
 
 ## Values are plain strings
@@ -31,8 +31,8 @@ safer thing to put in a database; switch with `valueFormat="BS"`.
 <BikramDatePicker
   value={date}
   onChange={(value, { ad, bs }) => {
-    value;  // '2026-08-20'          — matches valueFormat
-    ad;     // '2026-08-20'          — always AD
+    value;  // '2026-08-20'          (matches valueFormat)
+    ad;     // '2026-08-20'          (always AD)
     bs;     // { year: 2083, month: 5, day: 4 }
   }}
 />
@@ -50,19 +50,19 @@ A text input you can type into, plus a popover calendar.
 
 | Prop | Default | |
 | --- | --- | --- |
-| `value` | — | `"YYYY-MM-DD"` or `null` |
-| `onChange` | — | `(value, { ad, bs }) => void` |
+| `value` | - | `"YYYY-MM-DD"` or `null` |
+| `onChange` | - | `(value, { ad, bs }) => void` |
 | `valueFormat` | `'AD'` | `'AD'` or `'BS'` |
 | `format` | `'YYYY MMMM DD'` | display pattern for the input |
 | `locale` | `'en'` | `'en'` or `'ne'` |
-| `min` / `max` | — | bounds, in `valueFormat`'s calendar |
+| `min` / `max` | - | bounds, in `valueFormat`'s calendar |
 | `editable` | `true` | allow typing as well as picking |
 | `closeOnSelect` | `true` | |
-| `name` | — | renders a hidden input for plain HTML form posts |
+| `name` | - | renders a hidden input for plain HTML form posts |
 | `weekStartsOn` | `0` | 0 = Sunday |
 | `weekend` | `'nepal'` | see below |
-| `isDateDisabled` | — | `(day) => boolean` |
-| `dayTitle` / `dayContent` | — | per-day tooltip / extra content |
+| `isDateDisabled` | - | `(day) => boolean` |
+| `dayTitle` / `dayContent` | - | per-day tooltip / extra content |
 | `disabled`, `placeholder`, `id`, `required`, `className`, `classNames`, `aria-label`, `onOpenChange` | | |
 
 ### `<BikramCalendar />`
@@ -73,8 +73,8 @@ plus `selected`, `onSelect`, `month` / `defaultMonth` / `onMonthChange`,
 
 ### `<BikramDateConverter />`
 
-The conversion tool as a drop-in component — type into either side, the other
-follows.
+The conversion tool as a drop-in component. Type into either side and the
+other follows.
 
 ```tsx
 <BikramDateConverter defaultValue="2026-08-20" onChange={({ ad, bs }) => {}} />
@@ -82,7 +82,7 @@ follows.
 
 ### `useBikramCalendar()`
 
-The state behind the components, with no markup — month navigation, the day
+The state behind the components, with no markup: month navigation, the day
 grid, and which days are selectable. Use it to build your own UI.
 
 ```tsx
@@ -106,7 +106,7 @@ calendar.weeks.map((week) => week.map((day) => day.day));
 
 ## Theming
 
-The stylesheet is driven entirely by CSS custom properties — override variables
+The stylesheet is driven entirely by CSS custom properties. Override variables
 rather than fighting specificity.
 
 ```css
@@ -124,7 +124,7 @@ Available: `--bikram-accent`, `--bikram-accent-contrast`, `--bikram-bg`,
 under your own selector to take manual control.
 
 For structural changes, pass `classNames` (`root`, `header`, `nav`, `caption`,
-`grid`, `weekdays`, `weekday`, `week`, `day`, `footer`, `input`, `popover`) — or
+`grid`, `weekdays`, `weekday`, `week`, `day`, `footer`, `input`, `popover`), or
 skip the stylesheet entirely and style the `bikram__*` classes yourself.
 
 ## Holidays
@@ -141,9 +141,9 @@ bundled. Plug your own in:
 ```
 
 Weekends are handled for you, including Nepal's move to a two-day weekend on
-2026-04-12 — see the [core README](../core/README.md#weekends-change-over-time).
+2026-04-12. See the [core README](../core/README.md#weekends-change-over-time).
 
 ## Licence
 
 MIT © Inicrea Technologies. Calendar data derived from the Yorion engine
-(MIT OR Apache-2.0) — see [NOTICE](./NOTICE).
+(MIT OR Apache-2.0). See [NOTICE](./NOTICE).

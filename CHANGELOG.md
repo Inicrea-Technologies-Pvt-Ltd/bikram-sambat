@@ -6,7 +6,20 @@ share a version number and are released together.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.0] — 2026-08-20
+## [0.1.1] - 2026-08-20
+
+### Changed
+
+- `homepage` now points at the GitHub Pages demo. The custom domain configured
+  for 0.1.0 was withdrawn before its TLS certificate was issued, so the link on
+  the npm package pages was dead.
+- Removed em dashes from all package descriptions, READMEs and doc comments in
+  favour of ordinary punctuation.
+
+No functional changes: the calendar data, the API and the build output are
+identical to 0.1.0.
+
+## [0.1.0] - 2026-08-20
 
 First release.
 
@@ -14,7 +27,7 @@ First release.
 
 **`@inicrea/bikram-sambat-core`**
 
-- BS ↔ AD conversion across BS 1975-01-01 – 2100-12-30 (AD 1918-04-13 – 2044-04-12),
+- BS ↔ AD conversion across BS 1975-01-01 - 2100-12-30 (AD 1918-04-13 - 2044-04-12),
   from a calendar table generated from the [Yorion engine](https://github.com/Yorion-io/yorion_engine)
   and verified against it for all 46,022 days in both directions.
 - `adToBs`, `bsToAd`, `bsToAdIso`, `todayBs`, `bsWeekday`, with an explicit
@@ -47,10 +60,11 @@ First release.
 
 - The same three components on React Native primitives, plus
   `useBikramCalendar()`.
-- No WebAssembly and no native modules — Hermes has no WASM support, so the
+- No WebAssembly and no native modules. Hermes has no WASM support, so the
   pure-TypeScript core is what makes React Native possible at all. Nothing to
   link, and Expo Go works unmodified.
 - Theming through a partial `theme` object, with `lightTheme` / `darkTheme`
   presets and `createStyles()` for full control.
 
 [0.1.0]: https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat/releases/tag/v0.1.0
+[0.1.1]: https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat/releases/tag/v0.1.1

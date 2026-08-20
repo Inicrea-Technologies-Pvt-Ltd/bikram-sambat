@@ -18,7 +18,7 @@ export type BikramValueFormat = 'AD' | 'BS';
 
 export interface BikramDatePickerProps {
   /**
-   * Selected date as "YYYY-MM-DD" — AD by default, BS when `valueFormat` is
+   * Selected date as "YYYY-MM-DD". AD by default, BS when `valueFormat` is
    * `'BS'`. Empty string or null means nothing is selected.
    */
   value?: string | null;

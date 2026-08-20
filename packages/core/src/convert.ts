@@ -44,7 +44,7 @@ const YEAR_START_OFFSET: number[] = (() => {
   return offsets;
 })();
 
-/** Total days covered by the table — one past the last representable day. */
+/** Total days covered by the table, one past the last representable day. */
 const TOTAL_DAYS =
   YEAR_START_OFFSET[YEAR_START_OFFSET.length - 1]! +
   MONTH_DAYS[MONTH_DAYS.length - 1]!.reduce((a, b) => a + b, 0);
@@ -90,7 +90,7 @@ export function isValidBsDate(bs: Partial<BsDate> | null | undefined): bs is BsD
 
 /** Days elapsed since the epoch for a BS date. */
 function bsToDayIndex(bs: BsDate): number {
-  // Widened so the failure branch can still read the offending fields — a
+  // Widened so the failure branch can still read the offending fields, a
   // `bs is BsDate` guard would otherwise narrow `bs` to `never` here.
   const candidate: Partial<BsDate> = bs;
   if (!isValidBsDate(candidate)) {
@@ -157,7 +157,7 @@ export function toIsoDate(y: number, m: number, d: number): string {
 
 /**
  * Read the calendar date out of a `Date`, an ISO string, or BS-like parts.
- * A `Date` is read in local time unless `utc` is set — see {@link DateOptions}.
+ * A `Date` is read in local time unless `utc` is set. See {@link DateOptions}.
  */
 function adPartsOf(input: Date | string, options?: DateOptions): { y: number; m: number; d: number } {
   if (typeof input === 'string') return parseIsoDate(input);
@@ -205,7 +205,7 @@ export function adToBs(input: Date | string, options?: DateOptions): BsDate {
 
 /**
  * BS → AD, as "YYYY-MM-DD". Prefer this over {@link bsToAd} when you are
- * storing or transmitting the value — a calendar date has no timezone, and an
+ * storing or transmitting the value: a calendar date has no timezone, and an
  * ISO string keeps it that way.
  *
  * @example
@@ -262,7 +262,7 @@ export function addBsDays(bs: BsDate, days: number): BsDate {
 }
 
 /**
- * Add whole months, clamping the day to the target month's length — so
+ * Add whole months, clamping the day to the target month's length, so
  * Falgun 30 plus one month lands on the last day of Chaitra, not past it.
  */
 export function addBsMonths(bs: BsDate, months: number): BsDate {

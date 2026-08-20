@@ -6,7 +6,7 @@ Licence: MIT OR Apache-2.0
 
 This copy exists ONLY to generate the calendar tables in
 `packages/core/src/data.ts` and the golden test fixtures. It is a devDependency
-of the build and is **never** shipped in any published npm package — the
+of the build and is **never** shipped in any published npm package. The
 published core is pure TypeScript with zero runtime dependencies.
 
 Regenerate with: `pnpm gendata`

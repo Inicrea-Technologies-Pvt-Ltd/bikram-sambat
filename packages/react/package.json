@@ -1,7 +1,7 @@
 {
   "name": "@inicrea/bikram-sambat-react",
-  "version": "0.1.0",
-  "description": "Bikram Sambat (Nepali) date picker and converter for React \u2014 accessible, themeable, zero-dependency, with BS/AD toggle.",
+  "version": "0.1.1",
+  "description": "Bikram Sambat (Nepali) date picker and converter for React. Accessible, themeable, zero-dependency, with BS/AD toggle.",
   "keywords": [
     "react",
     "nepali-datepicker",
