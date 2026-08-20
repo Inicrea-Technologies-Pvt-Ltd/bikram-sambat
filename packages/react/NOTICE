@@ -1,0 +1,45 @@
+@inicrea/bikram-sambat-*
+Copyright (c) 2026 Inicrea Technologies
+
+------------------------------------------------------------------------------
+Third-party attribution
+------------------------------------------------------------------------------
+
+The Bikram Sambat calendar tables in `@inicrea/bikram-sambat-core` (src/data.ts) are
+generated from:
+
+  Yorion Engine
+  https://github.com/Yorion-io/yorion_engine
+  Copyright (c) 2024 bs_calendar_core contributors
+  Licensed under MIT OR Apache-2.0
+
+The engine itself is used at build time only and is NOT redistributed in any
+published package. What ships is the derived calendar data, produced by
+`tools/generate-data/generate.cjs` and verified day-by-day against the engine
+across the full supported range (BS 1975-2100).
+
+The MIT licence text above applies to that derived data as well; a copy of the
+Yorion MIT licence is reproduced below.
+
+------------------------------------------------------------------------------
+MIT License (Yorion Engine)
+
+Copyright (c) 2024 bs_calendar_core contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

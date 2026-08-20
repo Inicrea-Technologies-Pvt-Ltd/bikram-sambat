@@ -1,0 +1,79 @@
+{
+  "name": "@inicrea/bikram-sambat-react-native",
+  "version": "0.1.0",
+  "description": "Bikram Sambat (Nepali) date picker and converter for React Native \u2014 no WebAssembly, no native modules, works on Hermes.",
+  "keywords": [
+    "react-native",
+    "nepali-datepicker",
+    "bikram-sambat",
+    "nepali-calendar",
+    "datepicker",
+    "expo",
+    "nepal",
+    "date-converter",
+    "nepali-date",
+    "hermes"
+  ],
+  "license": "MIT",
+  "author": "Inicrea Technologies",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inicrea/bikram-sambat.git",
+    "directory": "packages/react-native"
+  },
+  "homepage": "https://github.com/inicrea/bikram-sambat#readme",
+  "bugs": {
+    "url": "https://github.com/inicrea/bikram-sambat/issues"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "react-native": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "react-native": "./dist/index.js",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-native": ">=0.70.0"
+  },
+  "dependencies": {
+    "@inicrea/bikram-sambat-core": "workspace:^"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "jsdom": "^25.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-native": "^0.76.5",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
+  }
+}

@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Unit tests
+        run: pnpm test
+
+      - name: Build
+        run: pnpm build
+
+      # The generator and verifier run against the vendored Yorion engine, so
+      # a hand-edited calendar table or a drifted engine version fails the build
+      # rather than shipping wrong dates.
+      - name: Calendar tables are reproducible
+        run: |
+          pnpm gendata
+          git diff --exit-code -- packages/core/src/data.ts packages/core/test/fixtures.json
+
+      - name: Verify every day against the Yorion engine
+        run: pnpm verify
+
+      # docs/index.html inlines the built core, so it must be regenerated
+      # whenever the package changes rather than drifting from it.
+      - name: Demo site is up to date
+        run: |
+          pnpm site
+          git diff --exit-code -- docs/index.html

@@ -1,0 +1,10 @@
+{
+  "name": "@inicrea/bikram-sambat-gendata",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Build-time generator: derives the portable BS calendar tables from the Yorion engine.",
+  "scripts": {
+    "generate": "node generate.cjs",
+    "verify": "node verify.cjs"
+  }
+}

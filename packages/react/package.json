@@ -1,0 +1,78 @@
+{
+  "name": "@inicrea/bikram-sambat-react",
+  "version": "0.1.0",
+  "description": "Bikram Sambat (Nepali) date picker and converter for React \u2014 accessible, themeable, zero-dependency, with BS/AD toggle.",
+  "keywords": [
+    "react",
+    "nepali-datepicker",
+    "bikram-sambat",
+    "nepali-calendar",
+    "datepicker",
+    "bs-date-picker",
+    "nepal",
+    "date-converter",
+    "nepali-date",
+    "react-component"
+  ],
+  "license": "MIT",
+  "author": "Inicrea Technologies",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inicrea/bikram-sambat.git",
+    "directory": "packages/react"
+  },
+  "homepage": "https://github.com/inicrea/bikram-sambat#readme",
+  "bugs": {
+    "url": "https://github.com/inicrea/bikram-sambat/issues"
+  },
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup && node scripts/add-use-client.mjs && cp src/styles.css dist/styles.css",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "dependencies": {
+    "@inicrea/bikram-sambat-core": "workspace:^"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "jsdom": "^25.0.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
+  }
+}

@@ -1,0 +1,331 @@
+/**
+ * @inicrea/bikram-sambat-react default theme.
+ *
+ * Every colour and size is a CSS custom property, so restyling means
+ * overriding variables rather than fighting specificity:
+ *
+ *   .bikram, .bikram-picker, .bikram-converter { --bikram-accent: #b91c1c; }
+ *
+ * Dark mode follows `prefers-color-scheme` by default; set the variables
+ * yourself under your own theme selector to take manual control.
+ */
+
+.bikram,
+.bikram-picker,
+.bikram-converter {
+  --bikram-accent: #2563eb;
+  --bikram-accent-contrast: #ffffff;
+  --bikram-bg: #ffffff;
+  --bikram-fg: #111827;
+  --bikram-muted: #6b7280;
+  --bikram-border: #e5e7eb;
+  --bikram-hover: #f3f4f6;
+  --bikram-weekend: #dc2626;
+  --bikram-radius: 8px;
+  --bikram-font: inherit;
+  --bikram-day-size: 2.25rem;
+  --bikram-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.15), 0 4px 10px -6px rgb(0 0 0 / 0.1);
+
+  font-family: var(--bikram-font);
+  color: var(--bikram-fg);
+  box-sizing: border-box;
+}
+
+.bikram *,
+.bikram-picker *,
+.bikram-converter * {
+  box-sizing: inherit;
+}
+
+@media (prefers-color-scheme: dark) {
+  .bikram,
+  .bikram-picker,
+  .bikram-converter {
+    --bikram-bg: #111827;
+    --bikram-fg: #f9fafb;
+    --bikram-muted: #9ca3af;
+    --bikram-border: #374151;
+    --bikram-hover: #1f2937;
+    --bikram-weekend: #f87171;
+    --bikram-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.5), 0 4px 10px -6px rgb(0 0 0 / 0.4);
+  }
+}
+
+/* ---------------------------------------------------------------- calendar */
+
+.bikram {
+  display: inline-block;
+  padding: 0.75rem;
+  background: var(--bikram-bg);
+  border-radius: var(--bikram-radius);
+  user-select: none;
+}
+
+.bikram__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.bikram__caption {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-align: center;
+  flex: 1;
+}
+
+.bikram__nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.875rem;
+  height: 1.875rem;
+  padding: 0;
+  font-size: 1.125rem;
+  line-height: 1;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--bikram-border);
+  border-radius: var(--bikram-radius);
+  cursor: pointer;
+}
+
+.bikram__nav:hover:not(:disabled) { background: var(--bikram-hover); }
+.bikram__nav:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.bikram__weekdays,
+.bikram__week {
+  display: grid;
+  grid-template-columns: repeat(7, var(--bikram-day-size));
+  gap: 2px;
+}
+
+.bikram__weekday {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.75rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--bikram-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.bikram__day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--bikram-day-size);
+  height: var(--bikram-day-size);
+  padding: 0;
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: var(--bikram-radius);
+  cursor: pointer;
+}
+
+.bikram__day:hover:not(:disabled) { background: var(--bikram-hover); }
+
+.bikram__day:focus-visible {
+  outline: 2px solid var(--bikram-accent);
+  outline-offset: 1px;
+}
+
+.bikram__day--weekend { color: var(--bikram-weekend); }
+.bikram__day--outside { opacity: 0.35; }
+
+.bikram__day--today {
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1px var(--bikram-accent);
+}
+
+.bikram__day--selected,
+.bikram__day--selected:hover:not(:disabled) {
+  color: var(--bikram-accent-contrast);
+  background: var(--bikram-accent);
+  font-weight: 600;
+}
+
+.bikram__day:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.bikram__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.625rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--bikram-border);
+  font-size: 0.75rem;
+  color: var(--bikram-muted);
+  min-height: 1.75rem;
+}
+
+.bikram__today {
+  font: inherit;
+  font-weight: 600;
+  color: var(--bikram-accent);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.bikram__today:hover { text-decoration: underline; }
+
+/* ------------------------------------------------------------------ picker */
+
+.bikram-picker { position: relative; display: inline-block; }
+
+.bikram-picker__control {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0 0.5rem 0 0.75rem;
+  background: var(--bikram-bg);
+  border: 1px solid var(--bikram-border);
+  border-radius: var(--bikram-radius);
+}
+
+.bikram-picker__control:focus-within {
+  outline: 2px solid var(--bikram-accent);
+  outline-offset: -1px;
+}
+
+.bikram-picker__input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.5rem 0;
+  font: inherit;
+  font-size: 0.875rem;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  outline: none;
+}
+
+.bikram-picker__input::placeholder { color: var(--bikram-muted); }
+.bikram-picker__input:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.bikram-picker__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  color: var(--bikram-muted);
+  background: transparent;
+  border: 0;
+  border-radius: var(--bikram-radius);
+  cursor: pointer;
+}
+
+.bikram-picker__trigger:hover:not(:disabled) {
+  color: var(--bikram-accent);
+  background: var(--bikram-hover);
+}
+
+.bikram-picker__popover {
+  position: absolute;
+  z-index: 50;
+  top: calc(100% + 4px);
+  left: 0;
+  background: var(--bikram-bg);
+  border: 1px solid var(--bikram-border);
+  border-radius: calc(var(--bikram-radius) + 4px);
+  box-shadow: var(--bikram-shadow);
+}
+
+/* --------------------------------------------------------------- converter */
+
+.bikram-converter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--bikram-bg);
+  border: 1px solid var(--bikram-border);
+  border-radius: calc(var(--bikram-radius) + 4px);
+}
+
+.bikram-converter__fields {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.bikram-converter__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1 1 10rem;
+}
+
+.bikram-converter__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--bikram-muted);
+}
+
+.bikram-converter__input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--bikram-border);
+  border-radius: var(--bikram-radius);
+}
+
+.bikram-converter__input:focus-visible {
+  outline: 2px solid var(--bikram-accent);
+  outline-offset: -1px;
+}
+
+.bikram-converter__arrow {
+  padding-bottom: 0.5rem;
+  font-size: 1.25rem;
+  color: var(--bikram-muted);
+}
+
+.bikram-converter__actions { display: flex; gap: 0.5rem; }
+
+.bikram-converter__button {
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 0.375rem 0.75rem;
+  color: var(--bikram-accent);
+  background: transparent;
+  border: 1px solid var(--bikram-border);
+  border-radius: var(--bikram-radius);
+  cursor: pointer;
+}
+
+.bikram-converter__button:hover { background: var(--bikram-hover); }
+
+.bikram-converter__status {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--bikram-muted);
+  min-height: 1.25rem;
+}
+
+.bikram-converter__error { color: var(--bikram-weekend); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .bikram__day,
+  .bikram__nav,
+  .bikram-picker__trigger { transition: background-color 120ms ease, color 120ms ease; }
+}

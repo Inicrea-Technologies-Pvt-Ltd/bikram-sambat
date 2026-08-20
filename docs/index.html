@@ -1,0 +1,1168 @@
+<title>Bikram Sambat for JavaScript</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500&display=swap">
+
+<style>
+:root {
+  --paper: #fdfdfc;
+  --panel: #f5f5f3;
+  --ink: #1a1c1e;
+  --muted: #6b7076;
+  --rule: #e3e3df;
+  --bs: #a51c30;
+  --ad: #2f5175;
+
+  --sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --deva: "Noto Sans Devanagari", var(--sans);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #17191b;
+    --panel: #1f2225;
+    --ink: #e7e7e4;
+    --muted: #9aa0a7;
+    --rule: #2d3134;
+    --bs: #d4838c;
+    --ad: #8fb0d0;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #17191b;
+  --panel: #1f2225;
+  --ink: #e7e7e4;
+  --muted: #9aa0a7;
+  --rule: #2d3134;
+  --bs: #d4838c;
+  --ad: #8fb0d0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page { width: min(100% - 2.5rem, 46rem); margin-inline: auto; }
+
+a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 2px; }
+a:hover { text-decoration-color: var(--bs); }
+
+code { font-family: var(--mono); font-size: .875em; }
+
+/* ------------------------------------------------------------------ header */
+
+.topbar {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+  padding: 1.5rem 0 1.25rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: .8125rem;
+}
+
+.mark { font-weight: 600; letter-spacing: -0.005em; }
+.mark .deva { font-family: var(--deva); color: var(--muted); font-weight: 400; margin-left: .4rem; }
+.topbar .meta { color: var(--muted); font-family: var(--mono); font-size: .75rem; }
+
+/* ------------------------------------------------------------------- intro */
+
+.intro { padding: 2.5rem 0 0; }
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  margin: 0 0 .625rem;
+}
+
+.summary { color: var(--muted); margin: 0 0 1.25rem; max-width: 60ch; }
+
+.install {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: .8125rem;
+  padding: .5rem .75rem;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  color: var(--ink);
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.install .prompt { color: var(--muted); user-select: none; }
+
+/* ---------------------------------------------------------------- sections */
+
+section { padding: 2.75rem 0; border-top: 1px solid var(--rule); margin-top: 2.75rem; }
+
+h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  margin: 0 0 .375rem;
+}
+
+.note { color: var(--muted); margin: 0 0 1.5rem; max-width: 62ch; }
+.note:last-child { margin-bottom: 0; }
+
+/* -------------------------------------------------------------- converter */
+
+.convert {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--panel);
+}
+
+.convert__fields { display: grid; grid-template-columns: 1fr 1fr; }
+
+.field { padding: 1rem 1.125rem; display: flex; flex-direction: column; gap: .375rem; }
+.field + .field { border-left: 1px solid var(--rule); }
+
+.field__label {
+  font-size: .6875rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.field--bs .field__label { color: var(--bs); }
+.field--ad .field__label { color: var(--ad); }
+
+.field__input {
+  width: 100%;
+  font-family: var(--mono);
+  font-size: 1.375rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  outline: none;
+}
+
+.field__input:focus-visible { outline: 2px solid var(--ad); outline-offset: 3px; border-radius: 2px; }
+
+.field__gloss { font-size: .8125rem; color: var(--muted); min-height: 1.4em; }
+.field__gloss.is-deva { font-family: var(--deva); }
+
+.convert__foot {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+  padding: .625rem 1.125rem;
+  border-top: 1px solid var(--rule);
+  font-size: .8125rem;
+}
+
+.status { color: var(--muted); }
+.status.is-error { color: var(--bs); }
+
+.actions { display: flex; align-items: center; gap: .5rem; }
+
+.btn {
+  font: inherit; font-size: .75rem; font-weight: 500;
+  padding: .3rem .6rem;
+  color: var(--ink); background: var(--paper);
+  border: 1px solid var(--rule); border-radius: 4px; cursor: pointer;
+}
+.btn:hover { border-color: var(--muted); }
+.btn:focus-visible { outline: 2px solid var(--ad); outline-offset: 1px; }
+
+.langs { display: inline-flex; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+.langs button {
+  font: inherit; font-size: .75rem; font-weight: 500;
+  padding: .3rem .55rem; border: 0; cursor: pointer;
+  background: var(--paper); color: var(--muted);
+}
+.langs button + button { border-left: 1px solid var(--rule); font-family: var(--deva); }
+.langs button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.langs button:focus-visible { outline: 2px solid var(--ad); outline-offset: -2px; }
+
+/* ------------------------------------------------------------------ patro */
+
+.patro-row { display: grid; gap: 1.75rem; grid-template-columns: minmax(0, 21rem) minmax(0, 1fr); align-items: start; }
+
+.patro { border: 1px solid var(--rule); border-radius: 6px; padding: .875rem; background: var(--panel); max-width: 21rem; }
+
+.patro__head { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: .625rem; }
+.patro__month { font-size: .875rem; font-weight: 600; }
+.patro__month.is-deva { font-family: var(--deva); }
+.patro__span { font-family: var(--mono); font-size: .6875rem; color: var(--muted); }
+
+.step {
+  width: 1.625rem; height: 1.625rem; display: grid; place-items: center;
+  font-size: .875rem; line-height: 1;
+  background: var(--paper); color: var(--ink);
+  border: 1px solid var(--rule); border-radius: 4px; cursor: pointer;
+}
+.step:hover:not(:disabled) { border-color: var(--muted); }
+.step:disabled { opacity: .35; cursor: not-allowed; }
+.step:focus-visible { outline: 2px solid var(--ad); outline-offset: 1px; }
+
+.patro__grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1px; }
+
+.dow {
+  text-align: center; font-size: .625rem; font-weight: 500;
+  color: var(--muted); padding-bottom: .35rem;
+}
+.dow.is-deva { font-family: var(--deva); font-size: .6875rem; }
+
+/* Patro cell: BS day large, its Gregorian day small in the corner. */
+.day {
+  position: relative; aspect-ratio: 1;
+  display: grid; place-items: center;
+  font-family: var(--mono); font-size: .8125rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink); background: transparent;
+  border: 1px solid transparent; border-radius: 4px; cursor: pointer;
+}
+.day.is-deva { font-family: var(--deva); }
+.day:hover:not(:disabled) { background: var(--paper); border-color: var(--rule); }
+.day:focus-visible { outline: 2px solid var(--ad); outline-offset: 1px; }
+
+.day__ad {
+  position: absolute; top: 2px; right: 3px;
+  font-family: var(--mono); font-size: .5rem;
+  color: var(--ad); opacity: .8;
+}
+
+.day--rest { color: var(--bs); }
+.day--outside { opacity: .32; }
+.day--today { border-color: var(--muted); }
+.day--sel, .day--sel:hover { background: var(--bs); color: #fff; border-color: var(--bs); }
+.day--sel .day__ad { color: #fff; opacity: .85; }
+
+.key { display: flex; gap: .875rem; flex-wrap: wrap; margin-top: .625rem; font-size: .6875rem; color: var(--muted); }
+.key span { display: inline-flex; align-items: center; gap: .3rem; }
+.key i { width: .55rem; height: .55rem; border-radius: 2px; display: inline-block; }
+
+.aside h3 { font-size: .875rem; font-weight: 600; margin: 0 0 .25rem; }
+.aside p { margin: 0 0 1.125rem; color: var(--muted); font-size: .875rem; }
+.aside p:last-child { margin-bottom: 0; }
+
+/* ------------------------------------------------------------------ tables */
+
+table { width: 100%; border-collapse: collapse; font-size: .875rem; }
+th, td { text-align: left; padding: .5rem .75rem .5rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: .75rem; letter-spacing: .03em; text-transform: uppercase; }
+tbody tr:last-child td { border-bottom: 0; }
+td.pkg { font-family: var(--mono); font-size: .8125rem; white-space: nowrap; padding-right: 1.25rem; }
+td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--muted); }
+
+.table-scroll { overflow-x: auto; }
+
+/* -------------------------------------------------------------------- code */
+
+pre {
+  margin: 0 0 1rem;
+  overflow-x: auto;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: .875rem 1rem;
+  font-family: var(--mono);
+  font-size: .8125rem;
+  line-height: 1.7;
+}
+pre:last-child { margin-bottom: 0; }
+.c { color: var(--muted); }
+
+/* ------------------------------------------------------------------ footer */
+
+footer {
+  border-top: 1px solid var(--rule);
+  margin-top: 2.75rem;
+  padding: 1.5rem 0 3rem;
+  color: var(--muted);
+  font-size: .8125rem;
+}
+
+@media (max-width: 720px) {
+  .convert__fields { grid-template-columns: 1fr; }
+  .field + .field { border-left: 0; border-top: 1px solid var(--rule); }
+  .patro-row { grid-template-columns: 1fr; }
+}
+</style>
+
+<div class="page">
+  <div class="topbar">
+    <div class="mark">Bikram Sambat<span class="deva">विक्रम सम्वत्</span></div>
+    <div class="meta">MIT · BS 1975–2100</div>
+  </div>
+
+  <div class="intro">
+    <h1>Bikram Sambat for JavaScript</h1>
+    <p class="summary">
+      Nepali calendar conversion and date pickers for React and React Native.
+      The calendar table is generated from the Yorion engine and checked against
+      it for every day in the supported range.
+    </p>
+    <div class="install"><span class="prompt">$ </span>npm install @inicrea/bikram-sambat-react</div>
+  </div>
+
+  <section>
+    <h2>Convert a date</h2>
+    <p class="note">Type into either field; the other follows.</p>
+
+    <div class="convert">
+      <div class="convert__fields">
+        <div class="field field--bs">
+          <label class="field__label" for="bs-input">Bikram Sambat</label>
+          <input id="bs-input" class="field__input" inputmode="numeric" spellcheck="false" autocomplete="off" value="2083-05-04">
+          <div class="field__gloss" id="bs-long"></div>
+        </div>
+        <div class="field field--ad">
+          <label class="field__label" for="ad-input">Gregorian</label>
+          <input id="ad-input" class="field__input" inputmode="numeric" spellcheck="false" autocomplete="off" value="2026-08-20">
+          <div class="field__gloss" id="ad-long"></div>
+        </div>
+      </div>
+      <div class="convert__foot">
+        <div class="status" id="status" role="status" aria-live="polite"></div>
+        <div class="actions">
+          <div class="langs" role="group" aria-label="Language">
+            <button type="button" id="lang-en" aria-pressed="true">EN</button>
+            <button type="button" id="lang-ne" aria-pressed="false">नेपाली</button>
+          </div>
+          <button type="button" class="btn" id="today-btn">Today</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Browse the calendar</h2>
+    <p class="note">
+      Each cell carries the Bikram Sambat day with its Gregorian day in the
+      corner, the way a printed patro does. Select a day to send it to the
+      converter.
+    </p>
+
+    <div class="patro-row">
+      <div>
+        <div class="patro">
+          <div class="patro__head">
+            <button type="button" class="step" id="prev-month" aria-label="Previous month">‹</button>
+            <div style="text-align:center">
+              <div class="patro__month" id="patro-title"></div>
+              <div class="patro__span" id="patro-sub"></div>
+            </div>
+            <button type="button" class="step" id="next-month" aria-label="Next month">›</button>
+          </div>
+          <div class="patro__grid" id="patro-grid"></div>
+        </div>
+        <div class="key">
+          <span><i style="background:var(--bs)"></i>Rest day</span>
+          <span><i style="background:var(--ad)"></i>Gregorian</span>
+          <span><i style="border:1px solid var(--muted)"></i>Today</span>
+        </div>
+      </div>
+
+      <div class="aside">
+        <h3>Weekends change over time</h3>
+        <p>
+          Nepal moved from a Saturday-only weekend to Saturday and Sunday on
+          2026-04-12 (BS 2082-12-29). Navigate to Chaitra 2082 and the grid
+          changes behaviour mid-month.
+        </p>
+        <h3>Month lengths have no formula</h3>
+        <p>
+          Nepali months run 29 to 32 days, set by the almanac rather than a
+          rule. That is why the table is generated rather than typed by hand.
+        </p>
+        <h3>This runs the real package</h3>
+        <p>
+          Everything on this page is <code>@inicrea/bikram-sambat-core</code>
+          running in your browser — not a reimplementation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Packages</h2>
+    <p class="note">
+      The conversion lives in one place. Install the package for your platform
+      and it brings the core with it.
+    </p>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Package</th><th>Contents</th><th>Size</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="pkg">@inicrea/bikram-sambat-core</td>
+            <td>Conversion, formatting, month grids, arithmetic, Nepali fiscal years. Runs in Node, browsers, edge runtimes and Hermes.</td>
+            <td class="num">4.9 kB</td>
+          </tr>
+          <tr>
+            <td class="pkg">@inicrea/bikram-sambat-react</td>
+            <td>Date picker, inline calendar and converter. Keyboard-navigable grid, CSS-variable theming, ships <code>"use client"</code>.</td>
+            <td class="num">5.5 kB</td>
+          </tr>
+          <tr>
+            <td class="pkg">@inicrea/bikram-sambat-react-native</td>
+            <td>The same three components on React Native primitives. No WebAssembly and no native modules, so Expo Go works unmodified.</td>
+            <td class="num">4.6 kB</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" style="margin-top:1rem">
+      Sizes are gzipped ESM builds. The two UI packages exclude the core they
+      depend on, and exclude React itself.
+    </p>
+  </section>
+
+  <section>
+    <h2>Usage</h2>
+    <p class="note">
+      Values move as <code>"YYYY-MM-DD"</code> strings — Gregorian by default,
+      since that is the safer thing to store.
+    </p>
+<pre><span class="c">// React</span>
+import { BikramDatePicker } from '@inicrea/bikram-sambat-react';
+import '@inicrea/bikram-sambat-react/styles.css';
+
+&lt;BikramDatePicker value={date} onChange={setDate} /&gt;</pre>
+<pre><span class="c">// Node, browser, React Native, edge</span>
+import { adToBs, formatBs } from '@inicrea/bikram-sambat-core';
+
+adToBs('2026-08-20');                             <span class="c">// { year: 2083, month: 5, day: 4 }</span>
+formatBs(bs, 'YYYY MMMM DD', { locale: 'ne' });   <span class="c">// '२०८३ भदौ ०४'</span></pre>
+  </section>
+
+  <section>
+    <h2>Range and verification</h2>
+    <p class="note">
+      Dates outside the supported range throw a <code>BikramRangeError</code>
+      rather than returning a wrong result.
+    </p>
+    <div class="table-scroll">
+      <table>
+        <tbody>
+          <tr><td>Bikram Sambat range</td><td class="num">1975-01-01 &ndash; 2100-12-30</td></tr>
+          <tr><td>Gregorian range</td><td class="num">1918-04-13 &ndash; 2044-04-12</td></tr>
+          <tr><td>Days verified against the engine, both directions</td><td class="num">46,022</td></tr>
+          <tr><td>Calendar table, one character per month</td><td class="num">1,512 chars</td></tr>
+          <tr><td>Runtime dependencies</td><td class="num">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" style="margin-top:1rem">
+      The table is regenerated and re-verified in CI, so a hand-edit or an
+      engine change fails the build instead of shipping.
+    </p>
+  </section>
+
+  <footer>
+    MIT © Inicrea Technologies. Calendar data derived from the
+    <a href="https://github.com/Yorion-io/yorion_engine">Yorion engine</a>,
+    licensed MIT OR Apache-2.0.
+  </footer>
+</div>
+<script>
+const Bikram = (function () {
+  const exports = {};
+// src/errors.ts
+var BikramRangeError = class _BikramRangeError extends RangeError {
+  constructor(message, code = "OUT_OF_RANGE") {
+    super(message);
+    this.name = "BikramRangeError";
+    this.code = code;
+    Object.setPrototypeOf(this, _BikramRangeError.prototype);
+  }
+};
+
+// src/data.ts
+var MIN_BS_YEAR = 1975;
+var MAX_BS_YEAR = 2100;
+var EPOCH_AD_UTC = Date.UTC(1918, 3, 13);
+var EPOCH_AD_ISO = "1918-04-13";
+var MAX_AD_ISO = "2044-04-12";
+var MONTH_DAYS_ENCODED = "223321101011232321110012132321110102223222101011223321101011232321110012222322011011223222101011223321101011232321110012222322011011223222101011232321101011232321110012222322011011223222101011232321110011232321110102223222101011223222101011232321110011232321110102223222101011223222101011232321110012132321110102223222101011223321101011232321110012132321110102223222101011223321101011232321110012222322011002223222101011223321101011232321110012222322011011223222101011223321101011232321110012222322011011223222101011232321101011232321110102222322101011223222101011232321110011232321110102222322101011223222101011232321110012132321110102223222101011223231101011232321110012132321110102223222101011223321101011232321110012132322011002223222101011223321101011232321110012222322011011223222101011223321101011232321110012222322011011223222101011232321101011232321110012222322101011223222101011232321110011232321110102222322101011223222101011232321110011232321110102223222101011223231101011232321110012132321110102223222101011223321101011232321110012222322010102223222101011223321101011232321110012222322011002223222101011223321101011232321110012222322011011223222101011232321101011232321110012222322101011223222101011232321110011232321110102222322101011223222101011232321110011232321110102223222101011223222101011223221110111232312110111132321110111223222101111123312110111132321110111132321110111223222110111123321110111132321110111223221110111223222101111123321101011232321110111223222010102223222100111232312101011";
+var TWO_DAY_WEEKEND_FROM_AD = "2026-04-12";
+var TWO_DAY_WEEKEND_FROM_BS = { year: 2082, month: 12, day: 29 };
+
+// src/convert.ts
+var MS_PER_DAY = 864e5;
+var MONTH_DAYS = (() => {
+  const years = [];
+  for (let i = 0; i < MONTH_DAYS_ENCODED.length; i += 12) {
+    const months = [];
+    for (let m = 0; m < 12; m++) {
+      months.push(MONTH_DAYS_ENCODED.charCodeAt(i + m) - 48 + 29);
+    }
+    years.push(months);
+  }
+  return years;
+})();
+var YEAR_START_OFFSET = (() => {
+  const offsets = new Array(MONTH_DAYS.length);
+  let total = 0;
+  for (let i = 0; i < MONTH_DAYS.length; i++) {
+    offsets[i] = total;
+    const months = MONTH_DAYS[i];
+    for (let m = 0; m < 12; m++) total += months[m];
+  }
+  return offsets;
+})();
+var TOTAL_DAYS = YEAR_START_OFFSET[YEAR_START_OFFSET.length - 1] + MONTH_DAYS[MONTH_DAYS.length - 1].reduce((a, b) => a + b, 0);
+var MIN_BS_DATE = Object.freeze({
+  year: MIN_BS_YEAR,
+  month: 1,
+  day: 1
+});
+var MAX_BS_DATE = Object.freeze({
+  year: MAX_BS_YEAR,
+  month: 12,
+  day: MONTH_DAYS[MONTH_DAYS.length - 1][11]
+});
+function daysInBsMonth(year, month) {
+  assertBsYearMonth(year, month);
+  return MONTH_DAYS[year - MIN_BS_YEAR][month - 1];
+}
+function daysInBsYear(year) {
+  assertBsYearMonth(year, 1);
+  return MONTH_DAYS[year - MIN_BS_YEAR].reduce((a, b) => a + b, 0);
+}
+function isValidBsDate(bs) {
+  if (!bs) return false;
+  const { year, month, day } = bs;
+  if (!isInt(year) || !isInt(month) || !isInt(day)) return false;
+  if (year < MIN_BS_YEAR || year > MAX_BS_YEAR) return false;
+  if (month < 1 || month > 12) return false;
+  if (day < 1) return false;
+  return day <= MONTH_DAYS[year - MIN_BS_YEAR][month - 1];
+}
+function bsToDayIndex(bs) {
+  const candidate = bs;
+  if (!isValidBsDate(candidate)) {
+    const { year, month, day } = candidate;
+    const outOfRange = typeof year !== "number" || year < MIN_BS_YEAR || year > MAX_BS_YEAR;
+    throw new BikramRangeError(
+      `Not a valid BS date: ${year}-${month}-${day}. Supported range is BS ${MIN_BS_YEAR}-01-01 to ${MAX_BS_YEAR}-12-${MAX_BS_DATE.day}.`,
+      outOfRange ? "OUT_OF_RANGE" : "INVALID_DATE"
+    );
+  }
+  const months = MONTH_DAYS[bs.year - MIN_BS_YEAR];
+  let days = YEAR_START_OFFSET[bs.year - MIN_BS_YEAR];
+  for (let m = 0; m < bs.month - 1; m++) days += months[m];
+  return days + bs.day - 1;
+}
+function dayIndexToBs(index) {
+  if (!Number.isFinite(index) || index < 0 || index >= TOTAL_DAYS) {
+    throw new BikramRangeError(
+      `AD date is outside the supported range (${EPOCH_AD_ISO} to ${MAX_AD_ISO}).`,
+      "OUT_OF_RANGE"
+    );
+  }
+  let lo = 0;
+  let hi = YEAR_START_OFFSET.length - 1;
+  while (lo < hi) {
+    const mid = lo + hi + 1 >> 1;
+    if (YEAR_START_OFFSET[mid] <= index) lo = mid;
+    else hi = mid - 1;
+  }
+  let rest = index - YEAR_START_OFFSET[lo];
+  const months = MONTH_DAYS[lo];
+  let month = 0;
+  while (rest >= months[month]) rest -= months[month++];
+  return { year: lo + MIN_BS_YEAR, month: month + 1, day: rest + 1 };
+}
+var ISO_DATE = /^(\d{4})-(\d{2})-(\d{2})(?:[T\s].*)?$/;
+function parseIsoDate(iso) {
+  const match = ISO_DATE.exec(iso.trim());
+  if (!match) {
+    throw new BikramRangeError(`Expected an ISO date like "2026-08-20", got "${iso}".`, "INVALID_DATE");
+  }
+  return { y: Number(match[1]), m: Number(match[2]), d: Number(match[3]) };
+}
+var pad = (n, width = 2) => String(n).padStart(width, "0");
+function toIsoDate(y, m, d) {
+  return `${pad(y, 4)}-${pad(m)}-${pad(d)}`;
+}
+function adPartsOf(input, options) {
+  if (typeof input === "string") return parseIsoDate(input);
+  if (!(input instanceof Date) || Number.isNaN(input.getTime())) {
+    throw new BikramRangeError("Expected a valid Date or an ISO date string.", "INVALID_DATE");
+  }
+  return options?.utc ? { y: input.getUTCFullYear(), m: input.getUTCMonth() + 1, d: input.getUTCDate() } : { y: input.getFullYear(), m: input.getMonth() + 1, d: input.getDate() };
+}
+function adToDayIndex(y, m, d) {
+  const utcMs = y >= 0 && y <= 99 ? lowYearUtc(y, m, d) : Date.UTC(y, m - 1, d);
+  return Math.round((utcMs - EPOCH_AD_UTC) / MS_PER_DAY);
+}
+function lowYearUtc(y, m, d) {
+  const date = new Date(Date.UTC(2e3, m - 1, d));
+  date.setUTCFullYear(y);
+  return date.getTime();
+}
+function adToBs(input, options) {
+  const { y, m, d } = adPartsOf(input, options);
+  return dayIndexToBs(adToDayIndex(y, m, d));
+}
+function bsToAdIso(a, b, c) {
+  const bs = typeof a === "number" ? { year: a, month: b, day: c } : a;
+  const ms = EPOCH_AD_UTC + bsToDayIndex(bs) * MS_PER_DAY;
+  const date = new Date(ms);
+  return toIsoDate(date.getUTCFullYear(), date.getUTCMonth() + 1, date.getUTCDate());
+}
+function bsToAd(a, b, c, d) {
+  const isParts = typeof a === "number";
+  const bs = isParts ? { year: a, month: b, day: c } : a;
+  const options = (isParts ? d : b) ?? {};
+  const iso = bsToAdIso(bs);
+  const { y, m, day } = { y: Number(iso.slice(0, 4)), m: Number(iso.slice(5, 7)), day: Number(iso.slice(8, 10)) };
+  return options.utc ? new Date(Date.UTC(y, m - 1, day)) : new Date(y, m - 1, day);
+}
+function todayBs(options) {
+  return adToBs(/* @__PURE__ */ new Date(), options);
+}
+function bsWeekday(bs) {
+  return (bsToDayIndex(bs) + 6) % 7;
+}
+function addBsDays(bs, days) {
+  return dayIndexToBs(bsToDayIndex(bs) + Math.trunc(days));
+}
+function addBsMonths(bs, months) {
+  const total = bs.year * 12 + (bs.month - 1) + Math.trunc(months);
+  const year = Math.floor(total / 12);
+  const month = total % 12 + 1;
+  assertBsYearMonth(year, month);
+  const day = Math.min(bs.day, MONTH_DAYS[year - MIN_BS_YEAR][month - 1]);
+  return { year, month, day };
+}
+function addBsYears(bs, years) {
+  return addBsMonths(bs, Math.trunc(years) * 12);
+}
+function diffBsDays(from, to) {
+  return bsToDayIndex(to) - bsToDayIndex(from);
+}
+function compareBs(a, b) {
+  return a.year - b.year || a.month - b.month || a.day - b.day;
+}
+function isSameBsDay(a, b) {
+  if (!a || !b) return false;
+  return a.year === b.year && a.month === b.month && a.day === b.day;
+}
+function startOfBsMonth(bs) {
+  return { year: bs.year, month: bs.month, day: 1 };
+}
+function endOfBsMonth(bs) {
+  return { year: bs.year, month: bs.month, day: daysInBsMonth(bs.year, bs.month) };
+}
+function clampBs(bs, min, max) {
+  if (min && compareBs(bs, min) < 0) return { ...min };
+  if (max && compareBs(bs, max) > 0) return { ...max };
+  return { ...bs };
+}
+function isInt(value) {
+  return typeof value === "number" && Number.isInteger(value);
+}
+function assertBsYearMonth(year, month) {
+  if (!isInt(year) || year < MIN_BS_YEAR || year > MAX_BS_YEAR) {
+    throw new BikramRangeError(
+      `BS year ${year} is outside the supported range ${MIN_BS_YEAR}-${MAX_BS_YEAR}.`,
+      "OUT_OF_RANGE"
+    );
+  }
+  if (!isInt(month) || month < 1 || month > 12) {
+    throw new BikramRangeError(`BS month must be 1-12, got ${month}.`, "INVALID_DATE");
+  }
+}
+
+// src/locale.ts
+var BS_MONTHS_EN = [
+  "Baishakh",
+  "Jestha",
+  "Ashadh",
+  "Shrawan",
+  "Bhadra",
+  "Ashwin",
+  "Kartik",
+  "Mangsir",
+  "Poush",
+  "Magh",
+  "Falgun",
+  "Chaitra"
+];
+var BS_MONTHS_SHORT_EN = [
+  "Bai",
+  "Jes",
+  "Asa",
+  "Shr",
+  "Bha",
+  "Asw",
+  "Kar",
+  "Man",
+  "Pou",
+  "Mag",
+  "Fal",
+  "Cha"
+];
+var BS_MONTHS_NE = [
+  "\u092C\u0948\u0936\u093E\u0916",
+  "\u091C\u0947\u0920",
+  "\u0905\u0938\u093E\u0930",
+  "\u0938\u093E\u0909\u0928",
+  "\u092D\u0926\u094C",
+  "\u0905\u0938\u094B\u091C",
+  "\u0915\u093E\u0930\u094D\u0924\u093F\u0915",
+  "\u092E\u0902\u0938\u093F\u0930",
+  "\u092A\u0941\u0937",
+  "\u092E\u093E\u0918",
+  "\u092B\u093E\u0917\u0941\u0928",
+  "\u091A\u0948\u0924"
+];
+var WEEKDAYS_EN = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+];
+var WEEKDAYS_SHORT_EN = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var WEEKDAYS_MIN_EN = ["S", "M", "T", "W", "T", "F", "S"];
+var WEEKDAYS_NE = [
+  "\u0906\u0907\u0924\u092C\u093E\u0930",
+  "\u0938\u094B\u092E\u092C\u093E\u0930",
+  "\u092E\u0919\u094D\u0917\u0932\u092C\u093E\u0930",
+  "\u092C\u0941\u0927\u092C\u093E\u0930",
+  "\u092C\u093F\u0939\u093F\u092C\u093E\u0930",
+  "\u0936\u0941\u0915\u094D\u0930\u092C\u093E\u0930",
+  "\u0936\u0928\u093F\u092C\u093E\u0930"
+];
+var WEEKDAYS_SHORT_NE = ["\u0906\u0907\u0924", "\u0938\u094B\u092E", "\u092E\u0919\u094D\u0917\u0932", "\u092C\u0941\u0927", "\u092C\u093F\u0939\u093F", "\u0936\u0941\u0915\u094D\u0930", "\u0936\u0928\u093F"];
+var WEEKDAYS_MIN_NE = ["\u0906", "\u0938\u094B", "\u092E\u0902", "\u092C\u0941", "\u092C\u093F", "\u0936\u0941", "\u0936"];
+var NE_DIGITS = ["\u0966", "\u0967", "\u0968", "\u0969", "\u096A", "\u096B", "\u096C", "\u096D", "\u096E", "\u096F"];
+function toNepaliDigits(value) {
+  return String(value).replace(/[0-9]/g, (d) => NE_DIGITS[Number(d)]);
+}
+function toLatinDigits(value) {
+  return value.replace(/[०-९]/g, (d) => String(d.charCodeAt(0) - 2406));
+}
+var EN = {
+  months: BS_MONTHS_EN,
+  monthsShort: BS_MONTHS_SHORT_EN,
+  weekdays: WEEKDAYS_EN,
+  weekdaysShort: WEEKDAYS_SHORT_EN,
+  weekdaysMin: WEEKDAYS_MIN_EN,
+  digits: String
+};
+var NE = {
+  months: BS_MONTHS_NE,
+  // Nepali month names are already short; there is no separate abbreviation.
+  monthsShort: BS_MONTHS_NE,
+  weekdays: WEEKDAYS_NE,
+  weekdaysShort: WEEKDAYS_SHORT_NE,
+  weekdaysMin: WEEKDAYS_MIN_NE,
+  digits: toNepaliDigits
+};
+function getLocale(locale = "en") {
+  return locale === "ne" ? NE : EN;
+}
+function bsMonthName(month, locale = "en") {
+  const strings = getLocale(locale);
+  return strings.months[month - 1] ?? "";
+}
+
+// src/format.ts
+var TOKEN = /\[([^\]]*)\]|YYYY|YY|MMMM|MMM|MM|M|DD|D|dddd|ddd|dd|d/g;
+var DEFAULT_PATTERN = "YYYY MMMM DD";
+function formatBs(bs, pattern = DEFAULT_PATTERN, options = {}) {
+  if (!isValidBsDate(bs)) {
+    throw new BikramRangeError(
+      `Cannot format an invalid BS date: ${JSON.stringify(bs)}.`,
+      "INVALID_DATE"
+    );
+  }
+  const strings = getLocale(options.locale);
+  const weekday = bsWeekday(bs);
+  const out = pattern.replace(TOKEN, (token, literal) => {
+    if (literal !== void 0) return literal;
+    switch (token) {
+      case "YYYY":
+        return pad2(bs.year, 4);
+      case "YY":
+        return pad2(bs.year % 100, 2);
+      case "MMMM":
+        return strings.months[bs.month - 1];
+      case "MMM":
+        return strings.monthsShort[bs.month - 1];
+      case "MM":
+        return pad2(bs.month, 2);
+      case "M":
+        return String(bs.month);
+      case "DD":
+        return pad2(bs.day, 2);
+      case "D":
+        return String(bs.day);
+      case "dddd":
+        return strings.weekdays[weekday];
+      case "ddd":
+        return strings.weekdaysShort[weekday];
+      case "dd":
+        return strings.weekdaysMin[weekday];
+      case "d":
+        return String(weekday);
+      default:
+        return token;
+    }
+  });
+  return options.locale === "ne" ? strings.digits(out) : out;
+}
+function parseBs(input, pattern = "YYYY-MM-DD") {
+  if (typeof input !== "string") return null;
+  const numbers = toLatinDigits(input).match(/\d+/g);
+  if (!numbers || numbers.length < 3) return null;
+  const order = (pattern.match(/YYYY|YY|MM?|DD?/g) ?? []).map((token) => token.charAt(0)).filter((field, index, all) => all.indexOf(field) === index);
+  const fields = order.length === 3 ? order : ["Y", "M", "D"];
+  const parts = {};
+  fields.forEach((field, index) => {
+    parts[field] = Number(numbers[index]);
+  });
+  let year = parts["Y"];
+  if (year < 100) year += 2e3;
+  const bs = { year, month: parts["M"], day: parts["D"] };
+  return isValidBsDate(bs) ? bs : null;
+}
+function describeBsMonth(year, month, locale = "en") {
+  const strings = getLocale(locale);
+  return `${strings.months[month - 1]} ${year} (${daysInBsMonth(year, month)} days)`;
+}
+function pad2(value, width) {
+  return String(value).padStart(width, "0");
+}
+
+// src/month.ts
+function weekendPredicate(policy = "nepal") {
+  if (policy === "nepal") {
+    return (weekday, ad) => weekday === 6 || weekday === 0 && ad >= TWO_DAY_WEEKEND_FROM_AD;
+  }
+  if (policy === "saturday") return (weekday) => weekday === 6;
+  if (policy === "saturday-sunday") return (weekday) => weekday === 0 || weekday === 6;
+  const days = new Set(policy);
+  return (weekday) => days.has(weekday);
+}
+function getBsMonthCalendar(year, month, options = {}) {
+  const { locale = "en", weekStartsOn = 0, weekend, today: todayOverride } = options;
+  const isWeekend = weekendPredicate(weekend);
+  const strings = getLocale(locale);
+  const daysInMonth = daysInBsMonth(year, month);
+  const startWeekday = bsWeekday({ year, month, day: 1 });
+  const today = todayOverride === null ? null : todayOverride ?? safeToday();
+  const build = (bs, outside) => {
+    const ad = bsToAdIso(bs);
+    const weekday = bsWeekday(bs);
+    return {
+      day: bs.day,
+      month: bs.month,
+      year: bs.year,
+      ad,
+      weekday,
+      outside,
+      weekend: isWeekend(weekday, ad),
+      today: isSameBsDay(bs, today)
+    };
+  };
+  const days = [];
+  for (let day = 1; day <= daysInMonth; day++) {
+    days.push(build({ year, month, day }, false));
+  }
+  const lead = (startWeekday - weekStartsOn + 7) % 7;
+  const cells = [];
+  const first = { year, month, day: 1 };
+  for (let i = lead; i > 0; i--) {
+    cells.push(padCell(first, -i, build));
+  }
+  cells.push(...days);
+  const last = { year, month, day: daysInMonth };
+  const trail = (7 - cells.length % 7) % 7;
+  for (let i = 1; i <= trail; i++) {
+    cells.push(padCell(last, i, build));
+  }
+  const weeks = [];
+  for (let i = 0; i < cells.length; i += 7) weeks.push(cells.slice(i, i + 7));
+  return {
+    year,
+    month,
+    monthName: strings.months[month - 1] ?? "",
+    daysInMonth,
+    startWeekday,
+    days,
+    weeks
+  };
+}
+function padCell(anchor, offset, build) {
+  try {
+    return build(addBsDays(anchor, offset), true);
+  } catch {
+    return { ...build(anchor, true), outside: true };
+  }
+}
+function safeToday() {
+  try {
+    return todayBs();
+  } catch {
+    return null;
+  }
+}
+function getWeekdayLabels(locale = "en", weekStartsOn = 0, width = "short") {
+  const strings = getLocale(locale);
+  const source = width === "full" ? strings.weekdays : width === "min" ? strings.weekdaysMin : strings.weekdaysShort;
+  return Array.from({ length: 7 }, (_, i) => source[(i + weekStartsOn) % 7]);
+}
+
+// src/fiscal.ts
+var SHRAWAN = 4;
+var ASHADH = 3;
+function getNepaliFiscalYear(bs) {
+  const bsYear = bs.month >= SHRAWAN ? bs.year : bs.year - 1;
+  const endYear = bsYear + 1;
+  return {
+    bsYear,
+    startAd: bsToAdIso({ year: bsYear, month: SHRAWAN, day: 1 }),
+    endAd: bsToAdIso({
+      year: endYear,
+      month: ASHADH,
+      day: daysInBsMonth(endYear, ASHADH)
+    }),
+    label: `${bsYear}/${String(endYear % 100).padStart(2, "0")}`
+  };
+}
+function isInFiscalYear(bs, bsYear) {
+  return getNepaliFiscalYear(bs).bsYear === bsYear;
+}
+
+exports.ASHADH = ASHADH;
+exports.BS_MONTHS_EN = BS_MONTHS_EN;
+exports.BS_MONTHS_NE = BS_MONTHS_NE;
+exports.BS_MONTHS_SHORT_EN = BS_MONTHS_SHORT_EN;
+exports.BikramRangeError = BikramRangeError;
+exports.EPOCH_AD_ISO = EPOCH_AD_ISO;
+exports.MAX_AD_ISO = MAX_AD_ISO;
+exports.MAX_BS_DATE = MAX_BS_DATE;
+exports.MAX_BS_YEAR = MAX_BS_YEAR;
+exports.MIN_BS_DATE = MIN_BS_DATE;
+exports.MIN_BS_YEAR = MIN_BS_YEAR;
+exports.SHRAWAN = SHRAWAN;
+exports.TWO_DAY_WEEKEND_FROM_AD = TWO_DAY_WEEKEND_FROM_AD;
+exports.TWO_DAY_WEEKEND_FROM_BS = TWO_DAY_WEEKEND_FROM_BS;
+exports.WEEKDAYS_EN = WEEKDAYS_EN;
+exports.WEEKDAYS_MIN_EN = WEEKDAYS_MIN_EN;
+exports.WEEKDAYS_NE = WEEKDAYS_NE;
+exports.WEEKDAYS_SHORT_EN = WEEKDAYS_SHORT_EN;
+exports.WEEKDAYS_SHORT_NE = WEEKDAYS_SHORT_NE;
+exports.adToBs = adToBs;
+exports.addBsDays = addBsDays;
+exports.addBsMonths = addBsMonths;
+exports.addBsYears = addBsYears;
+exports.bsMonthName = bsMonthName;
+exports.bsToAd = bsToAd;
+exports.bsToAdIso = bsToAdIso;
+exports.bsWeekday = bsWeekday;
+exports.clampBs = clampBs;
+exports.compareBs = compareBs;
+exports.daysInBsMonth = daysInBsMonth;
+exports.daysInBsYear = daysInBsYear;
+exports.describeBsMonth = describeBsMonth;
+exports.diffBsDays = diffBsDays;
+exports.endOfBsMonth = endOfBsMonth;
+exports.formatBs = formatBs;
+exports.getBsMonthCalendar = getBsMonthCalendar;
+exports.getLocale = getLocale;
+exports.getNepaliFiscalYear = getNepaliFiscalYear;
+exports.getWeekdayLabels = getWeekdayLabels;
+exports.isInFiscalYear = isInFiscalYear;
+exports.isSameBsDay = isSameBsDay;
+exports.isValidBsDate = isValidBsDate;
+exports.parseBs = parseBs;
+exports.startOfBsMonth = startOfBsMonth;
+exports.toIsoDate = toIsoDate;
+exports.toLatinDigits = toLatinDigits;
+exports.toNepaliDigits = toNepaliDigits;
+exports.todayBs = todayBs;
+  return exports;
+})();
+
+const {
+  adToBs, bsToAdIso, formatBs, parseBs, todayBs,
+  getBsMonthCalendar, getWeekdayLabels, toNepaliDigits,
+  MIN_BS_YEAR, MAX_BS_YEAR, EPOCH_AD_ISO, MAX_AD_ISO,
+} = Bikram;
+
+const $ = (id) => document.getElementById(id);
+const iso = (bs) => formatBs(bs, 'YYYY-MM-DD');
+
+let locale = 'en';
+let selected = safeToday();
+let view = { year: selected.year, month: selected.month };
+
+function safeToday() {
+  try { return todayBs(); } catch { return adToBs('2026-08-20'); }
+}
+
+/* -------------------------------------------------------------- converter */
+
+function renderConverter({ skip } = {}) {
+  const bsInput = $('bs-input');
+  const adInput = $('ad-input');
+  if (skip !== 'bs') bsInput.value = iso(selected);
+  if (skip !== 'ad') adInput.value = bsToAdIso(selected);
+
+  const deva = locale === 'ne';
+  const bsLong = $('bs-long');
+  const adLong = $('ad-long');
+
+  bsLong.textContent = formatBs(selected, 'MMMM DD, dddd', { locale });
+  bsLong.classList.toggle('is-deva', deva);
+
+  const ad = new Date(bsToAdIso(selected) + 'T00:00:00Z');
+  adLong.textContent = ad.toLocaleDateString('en-GB', {
+    day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+  });
+  adLong.classList.remove('is-deva');
+
+  setStatus('');
+}
+
+function setStatus(message, isError) {
+  const status = $('status');
+  status.textContent = message || `Bikram Sambat ${iso(selected)} is ${bsToAdIso(selected)} in the Gregorian calendar.`;
+  status.classList.toggle('is-error', !!isError);
+}
+
+$('bs-input').addEventListener('input', (event) => {
+  const parsed = parseBs(event.target.value, 'YYYY-MM-DD');
+  if (!parsed) {
+    setStatus(`Enter a Bikram Sambat date between ${MIN_BS_YEAR}-01-01 and ${MAX_BS_YEAR}-12-30.`, true);
+    return;
+  }
+  selected = parsed;
+  view = { year: parsed.year, month: parsed.month };
+  renderConverter({ skip: 'bs' });
+  renderPatro();
+});
+
+$('ad-input').addEventListener('input', (event) => {
+  try {
+    const parsed = adToBs(event.target.value);
+    selected = parsed;
+    view = { year: parsed.year, month: parsed.month };
+    renderConverter({ skip: 'ad' });
+    renderPatro();
+  } catch {
+    setStatus(`Enter a Gregorian date between ${EPOCH_AD_ISO} and ${MAX_AD_ISO}.`, true);
+  }
+});
+
+$('today-btn').addEventListener('click', () => {
+  selected = safeToday();
+  view = { year: selected.year, month: selected.month };
+  renderConverter();
+  renderPatro();
+});
+
+for (const [id, value] of [['lang-en', 'en'], ['lang-ne', 'ne']]) {
+  $(id).addEventListener('click', () => {
+    locale = value;
+    $('lang-en').setAttribute('aria-pressed', String(value === 'en'));
+    $('lang-ne').setAttribute('aria-pressed', String(value === 'ne'));
+    renderConverter();
+    renderPatro();
+  });
+}
+
+/* ------------------------------------------------------------------ patro */
+
+function renderPatro() {
+  const calendar = getBsMonthCalendar(view.year, view.month, { locale });
+  const deva = locale === 'ne';
+
+  const title = $('patro-title');
+  title.textContent = `${calendar.monthName} ${deva ? toNepaliDigits(view.year) : view.year}`;
+  title.classList.toggle('is-deva', deva);
+
+  const first = calendar.days[0];
+  const last = calendar.days[calendar.days.length - 1];
+  $('patro-sub').textContent = `${first.ad} — ${last.ad}`;
+
+  $('prev-month').disabled = view.year === MIN_BS_YEAR && view.month === 1;
+  $('next-month').disabled = view.year === MAX_BS_YEAR && view.month === 12;
+
+  const grid = $('patro-grid');
+  grid.textContent = '';
+
+  for (const label of getWeekdayLabels(locale, 0, 'short')) {
+    const cell = document.createElement('div');
+    cell.className = deva ? 'dow is-deva' : 'dow';
+    cell.textContent = label;
+    grid.append(cell);
+  }
+
+  for (const week of calendar.weeks) {
+    for (const day of week) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      const classes = ['day'];
+      if (deva) classes.push('is-deva');
+      if (day.weekend) classes.push('day--rest');
+      if (day.outside) classes.push('day--outside');
+      if (day.today) classes.push('day--today');
+      if (day.year === selected.year && day.month === selected.month && day.day === selected.day) {
+        classes.push('day--sel');
+      }
+      button.className = classes.join(' ');
+      button.setAttribute('aria-label', `${formatBs(day, 'D MMMM YYYY')} (${day.ad})`);
+      button.textContent = deva ? toNepaliDigits(day.day) : String(day.day);
+
+      const adTag = document.createElement('span');
+      adTag.className = 'day__ad';
+      adTag.textContent = day.ad.slice(8);
+      button.append(adTag);
+
+      button.addEventListener('click', () => {
+        selected = { year: day.year, month: day.month, day: day.day };
+        view = { year: day.year, month: day.month };
+        renderConverter();
+        renderPatro();
+      });
+
+      grid.append(button);
+    }
+  }
+}
+
+$('prev-month').addEventListener('click', () => step(-1));
+$('next-month').addEventListener('click', () => step(1));
+
+function step(direction) {
+  let { year, month } = view;
+  month += direction;
+  if (month < 1) { month = 12; year -= 1; }
+  if (month > 12) { month = 1; year += 1; }
+  if (year < MIN_BS_YEAR || year > MAX_BS_YEAR) return;
+  view = { year, month };
+  renderPatro();
+}
+
+renderConverter();
+renderPatro();
+</script>
