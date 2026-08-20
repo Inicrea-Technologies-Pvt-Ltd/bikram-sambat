@@ -16,9 +16,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # The version comes from "packageManager" in package.json. Setting it
+      # here as well makes the action fail with ERR_PNPM_BAD_PM_VERSION.
       - uses: pnpm/action-setup@v4
-        with:
-          version: 9
 
       # Trusted publishing needs npm >= 11.5.1, which ships with Node 24.
       - uses: actions/setup-node@v4
