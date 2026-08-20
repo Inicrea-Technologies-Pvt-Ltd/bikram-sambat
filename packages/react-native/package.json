@@ -18,12 +18,12 @@
   "author": "Inicrea Technologies",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/inicrea/bikram-sambat.git",
+    "url": "git+https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat.git",
     "directory": "packages/react-native"
   },
-  "homepage": "https://github.com/inicrea/bikram-sambat#readme",
+  "homepage": "https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat#readme",
   "bugs": {
-    "url": "https://github.com/inicrea/bikram-sambat/issues"
+    "url": "https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat/issues"
   },
   "type": "module",
   "sideEffects": false,

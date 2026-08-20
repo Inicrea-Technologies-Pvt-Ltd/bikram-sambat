@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write # npm provenance
+      # Required for npm trusted publishing (OIDC). Without it npm cannot mint
+      # the short-lived publish token and falls back to needing NPM_TOKEN.
+      id-token: write
     steps:
       - uses: actions/checkout@v4
 
@@ -18,9 +20,10 @@ jobs:
         with:
           version: 9
 
+      # Trusted publishing needs npm >= 11.5.1, which ships with Node 24.
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: pnpm
           registry-url: https://registry.npmjs.org
 
@@ -30,11 +33,25 @@ jobs:
       - run: pnpm build
       - run: pnpm verify
 
-      # core first: the UI packages depend on it.
+      # `pnpm pack` is what rewrites the `workspace:^` protocol into a real
+      # semver range; plain `npm publish` from the workspace would ship an
+      # uninstallable package. Packing first, then publishing the tarball with
+      # the npm CLI, gets both the rewrite and npm's OIDC exchange.
+      - name: Pack
+        run: |
+          mkdir -p .artifacts
+          for pkg in core react react-native; do
+            (cd "packages/$pkg" && pnpm pack --pack-destination "$GITHUB_WORKSPACE/.artifacts")
+          done
+          ls -la .artifacts
+
+      # core first — the UI packages depend on it.
+      # Provenance is generated automatically under trusted publishing; no
+      # --provenance flag and no NODE_AUTH_TOKEN needed.
       - name: Publish
         run: |
-          pnpm --filter @inicrea/bikram-sambat-core publish --access public --no-git-checks --provenance
-          pnpm --filter @inicrea/bikram-sambat-react publish --access public --no-git-checks --provenance
-          pnpm --filter @inicrea/bikram-sambat-react-native publish --access public --no-git-checks --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # The [0-9] guard matters: a bare `react-*` glob also matches
+          # `react-native-*`, which would publish the wrong tarball.
+          npm publish .artifacts/inicrea-bikram-sambat-core-[0-9]*.tgz --access public
+          npm publish .artifacts/inicrea-bikram-sambat-react-[0-9]*.tgz --access public
+          npm publish .artifacts/inicrea-bikram-sambat-react-native-[0-9]*.tgz --access public

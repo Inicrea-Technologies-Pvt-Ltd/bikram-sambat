@@ -53,4 +53,4 @@ First release.
 - Theming through a partial `theme` object, with `lightTheme` / `darkTheme`
   presets and `createStyles()` for full control.
 
-[0.1.0]: https://github.com/inicrea/bikram-sambat/releases/tag/v0.1.0
+[0.1.0]: https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat/releases/tag/v0.1.0
