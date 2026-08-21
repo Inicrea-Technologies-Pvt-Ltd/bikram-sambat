@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://inicrea-technologies-pvt-ltd.github.io/bikram-sambat/sitemap.xml
