@@ -1,6 +1,6 @@
 {
   "name": "@inicrea/bikram-sambat-react",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Bikram Sambat (Nepali) date picker and converter for React. Accessible, themeable, zero-dependency, with BS/AD toggle.",
   "keywords": [
     "react",
@@ -12,10 +12,17 @@
     "nepal",
     "date-converter",
     "nepali-date",
-    "react-component"
+    "react-component",
+    "nepali-date-picker",
+    "date-picker",
+    "patro",
+    "react-datepicker"
   ],
   "license": "MIT",
-  "author": "Inicrea Technologies",
+  "author": {
+    "name": "Inicrea Technologies",
+    "url": "https://inicreatechnologies.com"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat.git",

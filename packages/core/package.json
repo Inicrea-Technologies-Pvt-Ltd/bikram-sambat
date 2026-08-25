@@ -1,6 +1,6 @@
 {
   "name": "@inicrea/bikram-sambat-core",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Bikram Sambat (Nepali calendar) date conversion for JavaScript. Pure TypeScript, zero dependencies, works in Node, browsers and React Native.",
   "keywords": [
     "bikram-sambat",
@@ -12,10 +12,18 @@
     "date-converter",
     "bikram",
     "nepali",
-    "calendar"
+    "calendar",
+    "nepali-date-converter",
+    "patro",
+    "nepali-patro",
+    "bikram-sambat-js",
+    "typescript"
   ],
   "license": "MIT",
-  "author": "Inicrea Technologies",
+  "author": {
+    "name": "Inicrea Technologies",
+    "url": "https://inicreatechnologies.com"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat.git",

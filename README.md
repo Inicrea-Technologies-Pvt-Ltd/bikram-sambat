@@ -111,6 +111,13 @@ pnpm verify         # exhaustive day-by-day check against the engine
 pnpm site           # rebuild docs/index.html from site/index.html
 ```
 
+## Built by
+
+[Inicrea Technologies](https://inicreatechnologies.com) builds web and mobile
+products. We wrote this for our own apps and open sourced it, and we maintain
+it in the open. If you are building something similar and want help, get in
+touch through the site.
+
 ## Licence
 
 MIT © Inicrea Technologies. Calendar data derived from the Yorion engine
