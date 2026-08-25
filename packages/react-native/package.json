@@ -1,6 +1,6 @@
 {
   "name": "@inicrea/bikram-sambat-react-native",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Bikram Sambat (Nepali) date picker and converter for React Native. No WebAssembly, no native modules, works on Hermes.",
   "keywords": [
     "react-native",
@@ -12,10 +12,18 @@
     "nepal",
     "date-converter",
     "nepali-date",
-    "hermes"
+    "hermes",
+    "nepali-date-picker",
+    "react-native-datepicker",
+    "date-picker",
+    "patro",
+    "expo-datepicker"
   ],
   "license": "MIT",
-  "author": "Inicrea Technologies",
+  "author": {
+    "name": "Inicrea Technologies",
+    "url": "https://inicreatechnologies.com"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat.git",

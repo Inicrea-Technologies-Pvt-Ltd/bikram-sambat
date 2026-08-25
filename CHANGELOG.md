@@ -6,6 +6,19 @@ share a version number and are released together.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.3] - 2026-08-20
+
+### Added
+
+- Attribution section in each README pointing at Inicrea Technologies, and the
+  `author` field expanded so npm renders it as a link.
+- More keywords on all three packages, covering the phrasings people actually
+  search for (`nepali-date-picker`, `patro`, `react-native-datepicker` and
+  others). npm search weights keywords, and metadata is immutable, so these can
+  only change with a release.
+
+No code or calendar data changes.
+
 ## [0.1.2] - 2026-08-20
 
 Re-release only. No code, data or documentation changes: the published tarballs
@@ -80,3 +93,4 @@ First release.
 [0.1.0]: https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat/releases/tag/v0.1.0
 [0.1.1]: https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat/releases/tag/v0.1.1
 [0.1.2]: https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat/releases/tag/v0.1.2
+[0.1.3]: https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat/releases/tag/v0.1.3

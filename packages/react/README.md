@@ -143,6 +143,13 @@ bundled. Plug your own in:
 Weekends are handled for you, including Nepal's move to a two-day weekend on
 2026-04-12. See the [core README](../core/README.md#weekends-change-over-time).
 
+## Built by
+
+[Inicrea Technologies](https://inicreatechnologies.com) builds web and mobile
+products. We wrote this for our own apps and open sourced it, and we maintain
+it in the open. If you are building something similar and want help, get in
+touch through the site.
+
 ## Licence
 
 MIT © Inicrea Technologies. Calendar data derived from the Yorion engine

@@ -118,6 +118,13 @@ carrying both calendars, *"5 Shrawan 2083 (2026-07-21)"*, plus
 `accessibilityState` for selected and disabled days. Screen-reader users hear
 the AD date alongside the BS one.
 
+## Built by
+
+[Inicrea Technologies](https://inicreatechnologies.com) builds web and mobile
+products. We wrote this for our own apps and open sourced it, and we maintain
+it in the open. If you are building something similar and want help, get in
+touch through the site.
+
 ## Licence
 
 MIT © Inicrea Technologies. Calendar data derived from the Yorion engine
