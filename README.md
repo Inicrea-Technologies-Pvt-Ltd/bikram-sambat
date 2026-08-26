@@ -4,11 +4,11 @@ Nepali calendar conversion and date pickers that work everywhere (Node, browsers
 edge runtimes and React Native) with the calendar data verified day-by-day against
 a Rust calendar engine.
 
-| Package | What it is | Size |
-| --- | --- | --- |
-| [`@inicrea/bikram-sambat-core`](packages/core) | Conversion, formatting, month grids, fiscal years. Pure TypeScript, zero dependencies. | 4.9 kB gzipped |
-| [`@inicrea/bikram-sambat-react`](packages/react) | Date picker, calendar and converter for React. | 5.5 kB + core |
-| [`@inicrea/bikram-sambat-react-native`](packages/react-native) | The same three components for React Native. | 4.6 kB + core |
+| Package | What it is | Size | Source |
+| --- | --- | --- | --- |
+| [`@inicrea/bikram-sambat-core`](https://www.npmjs.com/package/@inicrea/bikram-sambat-core) | Conversion, formatting, month grids, fiscal years. Pure TypeScript, zero dependencies. | 4.9 kB gzipped | [packages/core](packages/core) |
+| [`@inicrea/bikram-sambat-react`](https://www.npmjs.com/package/@inicrea/bikram-sambat-react) | Date picker, calendar and converter for React. | 5.5 kB + core | [packages/react](packages/react) |
+| [`@inicrea/bikram-sambat-react-native`](https://www.npmjs.com/package/@inicrea/bikram-sambat-react-native) | The same three components for React Native. | 4.6 kB + core | [packages/react-native](packages/react-native) |
 
 Sizes are gzipped ESM builds; the UI packages exclude `core`, which they depend
 on, and exclude `react`/`react-native` themselves.
@@ -21,6 +21,8 @@ your browser.
 ```bash
 npm install @inicrea/bikram-sambat-react
 ```
+
+On npm: [core](https://www.npmjs.com/package/@inicrea/bikram-sambat-core) · [react](https://www.npmjs.com/package/@inicrea/bikram-sambat-react) · [react-native](https://www.npmjs.com/package/@inicrea/bikram-sambat-react-native).
 
 ```tsx
 import { BikramDatePicker } from '@inicrea/bikram-sambat-react';
