@@ -1,5 +1,7 @@
 # @inicrea/bikram-sambat-react
 
+[![npm](https://img.shields.io/npm/v/@inicrea%2Fbikram-sambat-react)](https://www.npmjs.com/package/@inicrea/bikram-sambat-react) [![npm downloads](https://img.shields.io/npm/dm/@inicrea%2Fbikram-sambat-react)](https://www.npmjs.com/package/@inicrea/bikram-sambat-react) [![license](https://img.shields.io/npm/l/@inicrea%2Fbikram-sambat-react)](./LICENSE)
+
 Bikram Sambat (Nepali) **date picker**, **calendar** and **date converter** for
 React. Accessible, themeable with CSS variables, and no dependencies beyond
 `@inicrea/bikram-sambat-core`.
@@ -149,6 +151,12 @@ Weekends are handled for you, including Nepal's move to a two-day weekend on
 products. We wrote this for our own apps and open sourced it, and we maintain
 it in the open. If you are building something similar and want help, get in
 touch through the site.
+
+## Related packages
+
+[`@inicrea/bikram-sambat-core`](https://www.npmjs.com/package/@inicrea/bikram-sambat-core) · [`@inicrea/bikram-sambat-react-native`](https://www.npmjs.com/package/@inicrea/bikram-sambat-react-native)
+
+All three are published from the same repository and share one calendar.
 
 ## Licence
 

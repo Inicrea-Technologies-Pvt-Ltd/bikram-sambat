@@ -140,6 +140,11 @@ h1 {
 }
 .install .prompt { color: var(--muted); user-select: none; }
 
+.npm-line { margin: .75rem 0 0; font-size: .8125rem; color: var(--muted); }
+.npm-line a { font-family: var(--mono); font-size: .95em; }
+td.pkg a { color: inherit; text-decoration-color: var(--rule); }
+td.pkg a:hover { text-decoration-color: var(--bs); }
+
 section { padding: 2.5rem 0; border-bottom: 1px solid var(--rule); scroll-margin-top: 1rem; }
 section:last-of-type { border-bottom: 0; }
 
@@ -339,6 +344,7 @@ footer { padding: 2rem 0 0; color: var(--muted); font-size: .8125rem; max-width:
 
     <div class="side-meta">
       <a href="https://github.com/Inicrea-Technologies-Pvt-Ltd/bikram-sambat">Source on GitHub</a>
+      <a href="https://www.npmjs.com/package/@inicrea/bikram-sambat-core">Packages on npm</a>
       <span>MIT · BS 1975-2100</span>
     </div>
   </aside>
@@ -352,6 +358,7 @@ footer { padding: 2rem 0 0; color: var(--muted); font-size: .8125rem; max-width:
         against it for every day in the supported range.
       </p>
       <div class="install"><span class="prompt">$ </span>npm install @inicrea/bikram-sambat-react</div>
+      <p class="npm-line">On npm: <a href="https://www.npmjs.com/package/@inicrea/bikram-sambat-core">@inicrea/bikram-sambat-core</a> · <a href="https://www.npmjs.com/package/@inicrea/bikram-sambat-react">@inicrea/bikram-sambat-react</a> · <a href="https://www.npmjs.com/package/@inicrea/bikram-sambat-react-native">@inicrea/bikram-sambat-react-native</a></p>
     </div>
 
     <section id="convert">
@@ -457,17 +464,17 @@ footer { padding: 2rem 0 0; color: var(--muted); font-size: .8125rem; max-width:
           </thead>
           <tbody>
             <tr>
-              <td class="pkg">@inicrea/bikram-sambat-core</td>
+              <td class="pkg"><a href="https://www.npmjs.com/package/@inicrea/bikram-sambat-core">@inicrea/bikram-sambat-core</a></td>
               <td>Conversion, formatting, month grids, arithmetic, Nepali fiscal years. Runs in Node, browsers, edge runtimes and Hermes.</td>
               <td class="num">4.9 kB</td>
             </tr>
             <tr>
-              <td class="pkg">@inicrea/bikram-sambat-react</td>
+              <td class="pkg"><a href="https://www.npmjs.com/package/@inicrea/bikram-sambat-react">@inicrea/bikram-sambat-react</a></td>
               <td>Date picker, inline calendar and converter. Keyboard-navigable grid, CSS-variable theming, ships <code>"use client"</code>.</td>
               <td class="num">5.5 kB</td>
             </tr>
             <tr>
-              <td class="pkg">@inicrea/bikram-sambat-react-native</td>
+              <td class="pkg"><a href="https://www.npmjs.com/package/@inicrea/bikram-sambat-react-native">@inicrea/bikram-sambat-react-native</a></td>
               <td>The same three components on React Native primitives. No WebAssembly and no native modules, so Expo Go works unmodified.</td>
               <td class="num">4.6 kB</td>
             </tr>

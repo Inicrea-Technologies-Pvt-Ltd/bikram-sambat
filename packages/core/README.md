@@ -1,5 +1,7 @@
 # @inicrea/bikram-sambat-core
 
+[![npm](https://img.shields.io/npm/v/@inicrea%2Fbikram-sambat-core)](https://www.npmjs.com/package/@inicrea/bikram-sambat-core) [![npm downloads](https://img.shields.io/npm/dm/@inicrea%2Fbikram-sambat-core)](https://www.npmjs.com/package/@inicrea/bikram-sambat-core) [![license](https://img.shields.io/npm/l/@inicrea%2Fbikram-sambat-core)](./LICENSE)
+
 Bikram Sambat (Nepali calendar) date conversion for JavaScript. Pure TypeScript,
 **zero runtime dependencies**, no WebAssembly, so it runs identically in Node,
 browsers, edge runtimes and React Native (Hermes).
@@ -168,6 +170,12 @@ try {
 products. We wrote this for our own apps and open sourced it, and we maintain
 it in the open. If you are building something similar and want help, get in
 touch through the site.
+
+## Related packages
+
+[`@inicrea/bikram-sambat-react`](https://www.npmjs.com/package/@inicrea/bikram-sambat-react) · [`@inicrea/bikram-sambat-react-native`](https://www.npmjs.com/package/@inicrea/bikram-sambat-react-native)
+
+All three are published from the same repository and share one calendar.
 
 ## Licence
 
